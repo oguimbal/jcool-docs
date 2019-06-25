@@ -1,0 +1,37 @@
+
+
+
+    .gqleditor {
+        background: #172B3A;
+        border-radius: 3px;
+        display: inline-block;
+        overflow: hidden;
+        position: relative;
+        margin: 1rem;
+        position: relative;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+    .gqleditor > div > div  {
+        height: 400px;
+    }
+
+    /* hide tabs */
+    .gqleditor > div >div > div > :first-child {
+        display: none;
+    }
+    /* hide config btn */
+    .gqleditor svg[width="23"] {
+        display: none;
+    }
+
+    /* hide docs & schema */
+    .graphiql-wrapper>div>div:nth-child(2) {
+        display: none;
+    }
+
+    /* from https://cdn.jsdelivr.net/npm/graphql-playground-react/build/static/css/index.css */
+    .gqleditor a, .gqleditor code, .gqleditor h1, .gqleditor h2, .gqleditor h3, .gqleditor h4, .gqleditor p, .gqleditor pre, .gqleditor ul{margin:0;padding:0;color:inherit}
+    .gqleditor  a:active, .gqleditor a:focus, .gqleditor button:focus, .gqleditor input:focus{outline:none}
+    .gqleditor button, .gqleditor input, .gqleditor submit{border:none}
+    .gqleditor button, .gqleditor input, .gqleditor pre{font-family:Open Sans,sans-serif}
+    .gqleditor  code{font-family:Consolas,monospace}

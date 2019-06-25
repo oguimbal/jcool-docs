@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jcool-docs</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css">
+  <link rel="shortcut icon" href="/_media/logo-sm.png" />
+  <!-- GQL playground -->
+  <link rel="stylesheet" href="/_style/playground.css">
+  <script src="//cdn.jsdelivr.net/npm/graphql-playground-react/build/static/js/middleware.js"></script>
+  <!-- sequence -->
+  <script src="//unpkg.com/raphael"></script>
+  <script src="//unpkg.com/underscore"></script>
+  <script src="/_scripts/sequence-diagram-min.js"></script>
+
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- docsify -->
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script>
+    window.$docsify = {
+      name: 'Justice.cool API',
+      logo: '/_media/logo-sm.png',
+      repo: '',
+      pagination: {
+        // crossChapter: true
+      },
+      loadSidebar: true,
+      coverpage: true,
+      subMaxLevel: 2
+    }
+  </script>
+  <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-json.min.js"></script>
+  <script src="//unpkg.com/docsify-copy-code"></script>
+  <script src="/_scripts/sequence-plugin.js"></script>
+  <script src="/_scripts/playground-plugin.js"></script>
+</body>
+</html>
