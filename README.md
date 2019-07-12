@@ -1,10 +1,18 @@
-# What is justice.cool
-
-<!-- {docsify-ignore-all} -->
+# Justice.cool
 
 [Justice.cool](https://justice.cool) is a mediation platform that helps people and companies to resolve their disputes.
 
-# Features
+# READ ME FIRST !
+
+Feel free to start hacking our api right away and to quick-read through this documentation. However, justice.cool is functionally complex. We thus strongly recommand you to:
+
+1) Read this page, in order to get a small overview of our flow.
+2) Understand how this documentation is organized.
+3) Find and follow the tutorial that matches your use case: it will guide you through your implementation step by step.
+
+# What justice.cool offers ?
+
+To our customers (those who land directly on [Justice.cool](https://justice.cool) to solve their problems), we offer several distinct services that are streamlined in a unique coherent experience:
 
 ### User guidance
 Users will be guided through a form that helps them to identify what they are entitled to, and why.
@@ -70,7 +78,7 @@ Justice.cool coordinates multiple actors, guiding the user who comes *directly* 
 - Prosecution step: justice.cool prepares a case for a lawyer who will take it to a judge. Justice.cool follows this process and keeps the user posted of his case evolution.
 
 
-# Purpose of justice.cool API
+# Who can use justice.cool API ?
 
 The justice.cool API is meant for multiple types of actors, to allow them to connect to our services:
 
@@ -105,7 +113,7 @@ In order to keep justice.cool services "free" for users (i.e. taking cases on a 
 
 They will be given the chance to finance mediations of users based on the score we compute. If they do so, and the mediation ends successully, or is judged by a court in favor of the demander, they will be entitled to a percentage of the wins (thus covering their initial investment).
 
-<!-- 
+<!--
 
 
 If you are using this API, you can opt-in to the steps:

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "docsify serve",
+    "start": "docsify serve --port 3001 --open true",
     "setup-cli": "npm i docsify-cli -g"
   },
   "author": "",
