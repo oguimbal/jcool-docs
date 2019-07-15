@@ -4,9 +4,14 @@ async function loadScript(url, force) {
         return this.loaded[url];
 
     var done;
-    const prom = new Promise(_done => done = _done);
+    var error;
+    const prom = new Promise((_done, _error) => {
+        done = _done;
+        error = _error;
+    });
     var script = document.createElement('script');
     script.onload = done;
+    script.onerror = error;
     script.src = url;
     scripts = document.getElementsByTagName('script')[0];
     scripts.parentNode.insertBefore(script, scripts);

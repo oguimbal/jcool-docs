@@ -172,9 +172,7 @@ If you execute this, a dispute will be created in Justice.cool, and you will be 
 ```
 
 
-It must be noted that if some information is missing, the dispute **will** be created (thus, you will have an ID), in a dormant state.
-
-But you will also be given the *form* property, which contains a link to a form that must be filled to complete the dispute. i.e. something like this:
+It must be noted that if some information is missing, the dispute **will** be created (thus, you will have an ID), in a dormant state. But you will also be given the *form* property, which contains a link to a form that must be filled to complete the dispute. i.e. something like this:
 
 ```json
 [...]
@@ -186,3 +184,69 @@ But you will also be given the *form* property, which contains a link to a form 
 
 
 ?> Please head to [the playground](/playground.md) to inspect detailed schema information and documentation.
+
+
+# How do I fill "variables" ?
+
+You may have noticed that you have to fill "variables", which are all the facts about your dispute. It looks like:
+
+```json
+[
+    { "variable": "age", "answer": 35 },
+    { "variable": "country", "answer": "France" }
+]
+```
+
+If you want to leverage justice.cool scoring, variables that you provide us must match variables that we know about.
+A complete list of "existing" variables [can be found here](/known-variables.md)
+
+
+# How do I fill "claims" ?
+
+You can optionnaly specify manual claims for each demander. Doing so, you can enforce justice.cool to take claims into account that would not have been created automatically (when updateMode: auto).
+
+?> If you use "updateMode: manual", then you **must** specify claims manually.
+
+
+```graphql
+mutation CreateDispute($opponent: OpponentInput!) {
+  createDispute(
+    data: {
+      # see above for those
+      features: [onboarding]
+      signatureMode: auto
+      variables: []
+      opponent: $opponent
+      # tells justice.cool to only take manual claims into account
+      updateMode: manual
+      # Who is the demander of this dispute ?
+      demanders: [
+        {
+          person: { firstName: "Perh", lastName: "Sohn" }
+          claims: [
+            # Add a first claim manually
+            { name: "My claim 1", compensation: { amount: 123 } }
+          ]
+        }
+      ]
+    }
+  ) {
+    # == selects the created dispute ID
+    id
+    details {
+      link
+    }
+  }
+}
+
+
+
+==> height tall
+==> $opponent
+{
+    company: { country: 'france', identifier: '80314744600022' },
+    contactMeans: [
+        { auto: true, mode: 'free' }
+    ]
+}
+```

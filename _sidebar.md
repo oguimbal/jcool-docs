@@ -1,6 +1,7 @@
 - [Introduction](/#what-is-justicecool)
 - [Quickstart](quickstart.md)
 - [Playground](playground.md)
+- [Known variables](known-variables.md)
 - [Tutorial: Demander companies](/demander/)
   - [Push a new dispute](/demander/push.md)
   - [Demander a](demandera.md)

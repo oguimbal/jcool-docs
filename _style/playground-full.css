@@ -1,18 +1,4 @@
-.tplroot {
-    height: 80vh !important;
-}
-.gqleditor {
-    margin: 0;
-    width: 100%;
-}
+
 .markdown-section {
     max-width: unset !important;
-}
-.gqleditor > div > div  {
-    height: 75vh !important;
-}
-
-/* hide docs & schema */
-.graphiql-wrapper>div>div:nth-child(2) {
-    display: unset !important;
 }

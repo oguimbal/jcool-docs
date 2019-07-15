@@ -4,6 +4,7 @@
     height: 430px;
     margin-left: -200px;
     margin-right: -200px;
+    position: relative;
 }
 
 .gqleditor > div > div  {
@@ -24,6 +25,25 @@
 .tplroot.very-tall  .gqleditor > div > div {
     height: calc(100vh - 57px);
 }
+
+/** fullpage */
+.tplroot.fullpage {
+    height: 80vh !important;
+    margin-left: unset;
+    margin-right: unset;
+}
+.gqleditor.fullpage {
+    margin: 0;
+    width: 100%;
+}
+.gqleditor.fullpage > div > div  {
+    height: 75vh !important;
+}
+
+/* hide docs & schema
+.gqleditor.fullpage .graphiql-wrapper>div>div:nth-child(2) {
+    display: unset !important;
+} */
 
 
 
@@ -75,7 +95,7 @@
 }
 
 /* hide docs & schema */
-.graphiql-wrapper>div>div:nth-child(2) {
+.gqleditor:not(.schema) .graphiql-wrapper>div>div:nth-child(2) {
     display: none;
 }
 
@@ -86,7 +106,10 @@
 .gqleditor button, .gqleditor input, .gqleditor pre{font-family:Open Sans,sans-serif}
 .gqleditor  code{font-family:Consolas,monospace}
 
-
+.CodeMirror-hints-wrapper {
+    position: fixed !important;
+    margin-top: -200px;
+}
 
 /* === loader === */
 .loader {
@@ -118,6 +141,10 @@ animation: loader 1.2s linear infinite;
 /* === text === */
 .text-center {
     text-align: center;
+}
+
+.text-danger {
+    color: darkred;
 }
 
 

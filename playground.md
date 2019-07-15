@@ -16,6 +16,8 @@
       newsfeedEmail
     }
 }
+==> fullpage
+==> schema
 ```
 
   <link rel="stylesheet" href="/_style/playground-full.css">
