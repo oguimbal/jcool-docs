@@ -18,6 +18,83 @@ async function loadScript(url, force) {
     return this.loaded[url] = prom;
 };
 
+async function loadStyle(url) {
+    this.loaded = this.loaded || {};
+    if (this.loaded[url])
+        return this.loaded[url];
+
+    var done;
+    var error;
+    const prom = new Promise((_done, _error) => {
+        done = _done;
+        error = _error;
+    });
+    var script = document.createElement('link');
+    script.setAttribute('rel', 'stylesheet');
+    script.onload = done;
+    script.onerror = error;
+    script.href = url;
+    scripts = document.getElementsByTagName('script')[0];
+    scripts.parentNode.insertBefore(script, scripts);
+    return this.loaded[url] = prom;
+};
+
+function debounce (fn, delay) {
+    var timeoutID = null
+    return function () {
+      clearTimeout(timeoutID)
+      var args = arguments
+      var that = this
+      timeoutID = setTimeout(function () {
+        fn.apply(that, args)
+      }, delay)
+    }
+  }
+
+async function copyToClipboard(text) {
+
+    (function() {
+        if (window['clipboardData'] && window['clipboardData'].setData) {
+            // IE specific code path to prevent textarea being shown while dialog is visible.
+            return window['clipboardData'].setData('Text', text);
+
+        } else if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
+            const textarea = document.createElement('textarea');
+            textarea.textContent = text;
+            textarea.style.position = 'fixed';  // Prevent scrolling to bottom of page in MS Edge.
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                return document.execCommand('copy');  // Security exception may be thrown by some browsers.
+            } catch (ex) {
+                console.warn('Copy to clipboard failed.', ex);
+                return false;
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+    })();
+
+    toast.info('Copied !');
+}
+
+(function() {
+    async function load() {
+        await loadScript('//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js');
+        await loadScript('//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js');
+        await loadStyle('//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css');
+    }
+    window.toast = {};
+    for (const c of ['info', 'error', 'success', 'warning']) {
+        const cp = c;
+        window.toast[c] = async function() {
+            await load();
+            toastr[cp](...arguments);
+        };
+    }
+})();
+
+
 // load auth0 lock
 (function() {
     var isDev = window.location.href.includes('localhost');
@@ -143,15 +220,39 @@ async function loadScript(url, force) {
     }
 
 
+    const endpoint = isDev ? 'http://localhost:3000/v1' : 'https://api.staging.justice.cool/v1';
+    const endpointPrivate = isDev ? 'http://localhost:3000/graphql' : 'https://api.staging.justice.cool/graphql';
     window.auth = {
         show,
         isDev,
         isAuthenticated,
+        endpoint,
         getProfile,
         logout,
         async token() {
             if (await isAuthenticated())
                 return sessionStorage.getItem('access_token');
+        },
+        query(query) {
+            return fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query })
+            })
+            .then(res => res.json());
+        },
+        queryPrivate(query, variables) {
+            return fetch(endpointPrivate, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query, variables })
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (!res.data)
+                    throw res;
+                return res.data;
+            })
         }
     }
 

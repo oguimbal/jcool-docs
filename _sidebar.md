@@ -4,8 +4,6 @@
 - [Known variables](known-variables.md)
 - [Tutorial: Demander companies](/demander/)
   - [Push a new dispute](/demander/push.md)
-  - [Demander a](demandera.md)
-  - [Demander b](demanderb.md)
   - [Explanation: What will be the experience of my opponent ?](/demander/opponent-experience.md)
 - [API Wrappers](wrappers.md)
 - [Terms of use](tos.md)

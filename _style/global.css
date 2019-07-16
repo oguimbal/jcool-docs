@@ -1,0 +1,26 @@
+.markdown-section h1 {
+    display: block;
+    /* border-bottom: #eee 0.3px solid; */
+    background: #efefef;
+
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding-left: calc(50vw + 1em);
+
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    margin-top: 1.5em;
+    line-height: 1.3em;
+}
+.markdown-section h1 * {
+    color: #669 !important;
+}
+
+h1 a {
+
+    text-decoration: none !important;
+}
+
+h2 {
+    padding-left: 1em;
+}

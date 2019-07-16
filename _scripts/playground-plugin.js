@@ -132,7 +132,7 @@
                                     'schema.polling.enable': false,
                                 },
                                 tabs: [{
-                                    endpoint: auth.isDev ? 'http://localhost:3000/v1' : 'https://api.justice.cool/v1',
+                                    endpoint: auth.endpoint,
                                     query,
                                     name: 'my query',
                                     headers,
