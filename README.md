@@ -7,10 +7,14 @@
 Feel free to start hacking our api right away and to quick-read through this documentation. However, justice.cool is functionally complex. We thus strongly recommand you to:
 
 1) Read this page, in order to get a small overview of our flow.
+
 2) Understand how this documentation is organized.
+
 3) Find and follow the tutorial that matches your use case: it will guide you through your implementation step by step.
 
-# What justice.cool offers ?
+?> This documentation [is open-source](https://github.com/oguimbal/jcool-docs). You are more than welcome to create pull requests to help us improve it.
+
+# Justice.cool, from the user perspective
 
 To our customers (those who land directly on [Justice.cool](https://justice.cool) to solve their problems), we offer several distinct services that are streamlined in a unique coherent experience:
 
@@ -36,9 +40,9 @@ Justice.cool offers a frame which helps both parties to negociate peacefully the
 
 ### Prosecution
 
-If unluckily both parties fail to settle on an amicable solution, justice.cool will allow lawyers to take the case in front of a court.
+If unluckily both parties fail to settle on an amicable solution, justice.cool will help lawyers to take the case in front of a court.
 
-Justice.cool will help lawyers by preparing a well formated file containing all information for both parties (which will never include details about the mediation negociation).
+Justice.cool will prepare them a well formated file containing all information for both parties (which will never include details about the mediation negociation).
 
 They will also be offered tools to help them to communicate with you securely, and to keep you posted of changes or news about your case.
 

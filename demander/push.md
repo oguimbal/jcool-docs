@@ -294,7 +294,7 @@ mutation CreateDispute($opponent: OpponentInput!) {
 
 ## Claims scored by justice.cool, with custom amount
 
-If you want your claims to be "scored" by justice.cool, you **must** provide on your custom claims a "typeId" that matches a type of claim [that we know about](/known-variables.md#claims).
+If you want your claims to be "scored" by justice.cool, you **must** provide on your custom claims a "typeId" that matches a type of claim [that we know about](/known-variables.md#claim-types).
 
 These claims have been modelized by our jurists and our data scientists so we can provide you an indicative score of your probability of success in court, based on the word of law, and on machine learning algorithms that will analyze past decisions of cases similar to yours.
 
