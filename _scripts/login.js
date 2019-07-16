@@ -220,6 +220,18 @@ async function copyToClipboard(text) {
     }
 
 
+    async function loadCrisp() {
+        if (typeof window === 'undefined')
+            return;
+        // <script type="text/javascript">(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+        window['$crisp']=[];
+        window['CRISP_WEBSITE_ID']="24d98a5c-f2b6-44c8-8356-0b759661a972";
+        await loadScript('https://client.crisp.chat/l.js');
+    }
+
+    if (!isDev)
+        loadCrisp();
+
     const endpoint = isDev ? 'http://localhost:3000/v1' : 'https://api.staging.justice.cool/v1';
     const endpointPrivate = isDev ? 'http://localhost:3000/graphql' : 'https://api.staging.justice.cool/graphql';
     window.auth = {
