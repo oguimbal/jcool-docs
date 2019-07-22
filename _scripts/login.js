@@ -102,8 +102,8 @@ async function copyToClipboard(text) {
         responseType: 'token id_token code',
         audience: 'api.justice.cool',
         scope: 'openid profile email offline_access user_metadata app_metadata',
-        clientID: 'MpnJmQFhBG0yo69XVvXFCLQKnXbBFtFX',
-        domain: 'justicecool.eu.auth0.com',
+        clientID: 'mDttl5aVQOmmKQnXuydhkGua3b1AQ2dd',
+        domain: 'justice.eu.auth0.com',
         redirectUri: isDev ? 'http://localhost:3001' : 'https://docs.justice.cool',
     };
     var defautltAuthParams = {

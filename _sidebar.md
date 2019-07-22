@@ -5,6 +5,7 @@
 - [Tutorial: Demander companies](/demander/)
   - [Push a new dispute](/demander/push.md)
   - [Explanation: What will be the experience of my opponent ?](/demander/opponent-experience.md)
+- [Auto reponders](/auto-responders.md)
 - [API Wrappers](wrappers.md)
 - [Terms of use](tos.md)
 <!-- - [API bindings](/) -->

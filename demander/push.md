@@ -22,7 +22,7 @@ A bit of code can be worth a thousand lines:
 ?> Dont be affraid to run the code below, it will create a dispute on the **staging** environment, which is free, and which does not contact your opponent in real life.
 
 ```graphql
-mutation CreateDispute($variables: [VariableDataInput!]) {
+mutation CreateDispute($facts: [FactDataInput!]) {
   createDispute(
     data: {
       # tells justice.cool to create a form if some info is missing
@@ -34,7 +34,7 @@ mutation CreateDispute($variables: [VariableDataInput!]) {
       # an arbitrary external ID that might be useful to you
       externalId: "my id"
       # Data describing the litigation. See "Query variables" tab below
-      variables: $variables
+      facts: $facts
       # Who is the demander of this dispute ?
       demanders: [{ person: { firstName: "Perh", lastName: "Sohn" } }]
       # Who is the opponent in this dispute ?
@@ -66,7 +66,7 @@ mutation CreateDispute($variables: [VariableDataInput!]) {
 
 
 ==> height very-tall
-==> $variables
+==> $facts
 [   {
         variable: 'litigationType',
         answer: 'work'
@@ -186,9 +186,9 @@ It must be noted that if some information is missing, the dispute **will** be cr
 ?> Please head to [the playground](/playground.md) to inspect detailed schema information and documentation.
 
 
-# What are "variables", and how do I fill that ?
+# What are "facts", and how do I fill that ?
 
-You may have noticed in the example above that you have to fill "variables", which are all the facts about your dispute. It looks like:
+You may have noticed in the example above that you have to fill "facts", which are all the facts about your dispute. It looks like:
 
 ```json
 [
