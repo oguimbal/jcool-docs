@@ -21,7 +21,9 @@ A bit of code can be worth a thousand lines:
 
 ?> Dont be affraid to run the code below, it will create a dispute on the **staging** environment, which is free, and which does not contact your opponent in real life.
 
-```graphql
+```playground
+==> height very-tall
+==> gql
 mutation CreateDispute($facts: [FactDataInput!]) {
   createDispute(
     data: {
@@ -62,11 +64,7 @@ mutation CreateDispute($facts: [FactDataInput!]) {
     }
   }
 }
-
-
-
-==> height very-tall
-==> $facts
+==> variable facts
 [   {
         variable: 'litigationType',
         answer: 'work'
@@ -153,7 +151,36 @@ mutation CreateDispute($facts: [FactDataInput!]) {
 ]
 
 ==> wrapper Typescript
-await api.createDispute({ /* Creation data (see GraphQL) */});
+await api.createDispute({
+      // tells justice.cool to create a form if some info is missing
+      features: [JCoolFeature.Onboarding]
+      // how claims will be created/deleted
+      updateMode: UpdateMode.Auto
+      // how contracts will be signed
+      signatureMode: SignatureMode.Auto
+      // an arbitrary external ID that might be useful to you
+      externalId: "my id"
+      // Who is the demander of this dispute ?
+      demanders: [{ person: { firstName: "Perh", lastName: "Sohn" } }]
+      // Who is the opponent in this dispute ?
+      opponent: {
+        // opponent is a company: must be identified using SIREN
+        company: { country: Country.France, identifier: "80314744600022" }
+        // when opponent is a company, contact means are optional
+        contactMeans: [
+          // you can specify this to tell justice.cool to also contact company as it is used to
+          { auto: true, mode: ContactMode.Free }
+          // specifying this, justice.cool will also send a "recommandé électronique" to this address to contact them:
+          { email: "perh.sohn@nobody.com", mode: ContactMode.Premium }
+        ]
+      }
+      // Data describing the litigation.
+      facts: [
+        { variable: 'litigationType', answer: 'work' }
+        /* ... other variables ... */
+      ]
+    }
+  });
 ```
 
 
@@ -241,7 +268,8 @@ On another hand, such claims will not be scored, nor updated automatically by ju
 For instance, the request below creates a new dispute with only two custom claims (and no variable data).
 
 
-```graphql
+```playground
+==> gql
 mutation CreateDispute($opponent: OpponentInput!) {
   createDispute(
     data: {
@@ -284,7 +312,7 @@ mutation CreateDispute($opponent: OpponentInput!) {
 }
 
 ==> height tall
-==> $opponent
+==> variable opponent
 {
     company: { country: 'france', identifier: '80314744600022' },
     contactMeans: [

@@ -3,10 +3,9 @@
     const template = `
     <div class="tplroot" :class="editorClassName">
 
-        <template v-if="equivalents.length">
-            <div class="tab" @click="tab='gql'" :class="{selected: tab==='gql'}">GraphQL</div>
+        <template v-if="equivalents.length > 1">
             <div class="tab" v-for="t in equivalents" :class="{selected: tab === t}" @click="tab=t">
-                {{t.language}} wrapper
+                {{t.language || 'GraphQL'}}
             </div>
         </template>
         <div class="tabsection gql" v-show="tab==='gql'">
@@ -24,8 +23,8 @@
             <div v-if="state === 'error'" class="text-danger text-center">Error loading playground</div>
         </div>
         <div class="tabsection code" v-if="tab !== 'gql'">
-            <div class="wrapper" v-html="tab.body">
-            </div>
+            <pre class="wrapper" v-html="tab.body">
+            </pre>
         </div>
     </div>
     `;
@@ -49,7 +48,7 @@
             return
         }
 
-        (dom.findAll('pre[data-lang="graphql"]') || []).forEach(function (element) {
+        (dom.findAll('pre[data-lang="playground"]') || []).forEach(function (element) {
             // create template root
             var rendered = dom.create('div')
             rendered.innerHTML = template;
@@ -119,63 +118,72 @@
                             };
 
                         let spl = element.innerText.split(/==>/g);
-                        let [query] = spl.splice(0, 1);
                         let matched = spl.map(x => ({
-                            match: /^\s*(\$?)([a-zA-Z]+)([\r\n\s]+((.|\r|\n)*))?$/g.exec(x) || [],
+                            match: /^\s*([a-zA-Z]+)([\r\n\s]+((.|\r|\n)*))?$/g.exec(x) || [],
                             val: x,
                         }));
                         const variables = {};
+                        const variablesDef = {};
                         for (let {match, val} of matched) {
-                            const [full, dol, k, __, v] = match;
+                            const [full, k, __, v] = match;
                             if (!k)
                                 continue;
-                            if (dol) {
-                                const toEval = '(function() { return ' + v + ';})()';
-                                variables[k] = eval(toEval);
-                            } else {
-                                switch (k) {
-                                    case 'height':
-                                        this.heightClass = v.trim();
-                                        break;
-
-                                    case 'fullpage':
-                                        this.heightClass = 'fullpage';
-                                        break;
-                                    case 'schema':
-                                        this.hasSchema = true;
-                                        break;
-                                    case 'wrapper':
-                                        const [__, language, code] = /^([^\s]+)\s+(.+)$/.exec(v.trim());
-                                        this.equivalents.push({
-                                            language,
-                                            body: Prism.highlight(code.trim(), Prism.languages[language.toLowerCase()], language.toLowerCase()),
+                            switch (k) {
+                                case 'gql':
+                                    const query = v.trim();
+                                    snoozeFocus();
+                                    // const playElt = this.$refs.gqleditor.firstElementChild;
+                                    this.playElt = document.getElementById(idstr);
+                                    playground.init(this.playElt, {
+                                            // workspaceName: element.innerText,
+                                            settings: {
+                                                'schema.polling.enable': false,
+                                            },
+                                            tabs: [{
+                                                endpoint: auth.endpoint,
+                                                query,
+                                                name: 'my query',
+                                                headers,
+                                                variables: JSON.stringify(variables),
+                                            }]
                                         });
-                                }
+                                    this.equivalents.push('gql');
+                                    break;
+                                case 'variable':
+                                    const [_, varName, varVal] = /^\s*([a-zA-Z]+)(.+)$/gs.exec(v) || [];
+                                    if (varName && varVal) {
+                                        const toEval = '(function() { return ' + varVal.trim() + ';})()';
+                                        variablesDef[varName] = varVal.trim();
+                                        variables[varName] = eval(toEval);
+                                    }
+                                    break;
+                                case 'height':
+                                    this.heightClass = v.trim();
+                                    break;
+
+                                case 'fullpage':
+                                    this.heightClass = 'fullpage';
+                                    break;
+                                case 'schema':
+                                    this.hasSchema = true;
+                                    break;
+                                case 'wrapper':
+                                    const [__, language, code] = /^([a-zA-Z\#\+]+)\b(.+)$/mgs.exec(v.trim()) || [];
+                                    const finalCode = code.replace(/\$[a-zA-Z]+\b/g, (arg) => {
+                                        return variablesDef[arg] || arg;
+                                    })
+                                    this.equivalents.push({
+                                        language,
+                                        body: Prism.highlight(finalCode.trim(), Prism.languages[language.toLowerCase()], language.toLowerCase()),
+                                    });
                             }
 
                         }
 
-                        // instanciate
-                        snoozeFocus();
-
-                        // const playElt = this.$refs.gqleditor.firstElementChild;
-                        this.playElt = document.getElementById(idstr);
-                        playground.init(this.playElt, {
-                                // workspaceName: element.innerText,
-                                settings: {
-                                    'schema.polling.enable': false,
-                                },
-                                tabs: [{
-                                    endpoint: auth.endpoint,
-                                    query,
-                                    name: 'my query',
-                                    headers,
-                                    variables: JSON.stringify(variables),
-                                }]
-                            });
-                        console.log('...created');
+                        this.tab = this.equivalents[0];
                         this.$data.state = token ? 'logged-in' : 'logged-out';
                         this.$forceUpdate();
+                        console.log('...created');
 
                     } catch (e) {
                         console.error(e);
