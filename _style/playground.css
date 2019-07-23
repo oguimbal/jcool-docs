@@ -1,33 +1,36 @@
 
 /* === playground === */
 .tplroot {
-    height: 430px;
     margin-left: -200px;
     margin-right: -200px;
     position: relative;
+}
+
+.tplroot.withgql {
+    height: 430px;
 }
 
 .gqleditor > div > div  {
     height: 400px;
 }
 /* tall */
-.tplroot.tall {
+.withgql.tplroot.tall {
     height: 830px;
 }
-.tplroot.tall  .gqleditor > div > div {
+.withgql.tplroot.tall  .gqleditor > div > div {
     height: 800px;
 }
 
 /* very tall */
-.tplroot.very-tall {
+.withgql.tplroot.very-tall {
     height: calc(100vh - 57px + 30px);
 }
-.tplroot.very-tall  .gqleditor > div > div {
+.withgql.tplroot.very-tall  .gqleditor > div > div {
     height: calc(100vh - 57px);
 }
 
 /** fullpage */
-.tplroot.fullpage {
+.withgql.tplroot.fullpage {
     height: 80vh !important;
     margin-left: unset;
     margin-right: unset;
@@ -162,4 +165,59 @@ animation: loader 1.2s linear infinite;
     font-weight: 500;
     height: 61px;
     box-shadow: 0 2px 5px 0 rgba(0,128,255,.4);
+}
+
+
+
+/* =========== TABS ========== */
+.tabs {
+    /* max-width: 800px;
+    padding: 40px;
+    border: 1px solid rgba(0,0,0,.2);
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1); */
+    margin-bottom: 3em;
+}
+
+.tabs > .tabsection {
+    border-top: 1px solid #abc;
+}
+
+.tabs > .tabsection.gql .gqleditor {
+    margin: 0;
+}
+
+
+.tabs > .tabsection.code {
+    padding: 20px;
+    /* text-align: center; */
+    background: #F8F8F8;
+    border: 1px solid rgba(0,0,0,.2);
+}
+
+.tabs > .tabsection.code .wrapper {
+    display: inline-block;
+}
+
+.tabs >   .tab {
+    display: inline-block;
+    margin: 0 0 -1px;
+    padding: 15px 25px;
+    font-weight: 600;
+    text-align: center;
+    color: #abc;
+    border: 1px solid transparent;
+  }
+
+
+.tabs > .tab:hover {
+    color: #789;
+    cursor: pointer;
+}
+
+.tabs > .tab.selected {
+    color: #0af;
+    border: 1px solid #abc;
+    border-top: 2px solid #0af;
+    border-bottom: 1px solid #fff;
 }

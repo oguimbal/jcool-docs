@@ -2,18 +2,31 @@
 (function() {
     const template = `
     <div class="tplroot" :class="editorClassName">
-        <div v-if="state === 'loading'" class="tplload text-center">
-            <div class="loader"></div>
+
+        <template v-if="equivalents.length">
+            <div class="tab" @click="tab='gql'" :class="{selected: tab==='gql'}">GraphQL</div>
+            <div class="tab" v-for="t in equivalents" :class="{selected: tab === t}" @click="tab=t">
+                {{t.language}} wrapper
+            </div>
+        </template>
+        <div class="tabsection gql" v-show="tab==='gql'">
+            <div v-if="state === 'loading'" class="tplload text-center">
+                <div class="loader"></div>
+            </div>
+            <div class="login-btn text-center" v-if="state === 'logged-out'">
+                <button class="btn" @click="login">Login to run</button>
+            </div>
+            <div class="login-btn text-center" v-if="state === 'logged-in'">
+                <button class="btn" @click="logout">Logout</button>
+            </div>
+            <div :class="editorClassName" class="gqleditor" :id="idstr">
+            </div>
+            <div v-if="state === 'error'" class="text-danger text-center">Error loading playground</div>
         </div>
-        <div class="login-btn text-center" v-if="state === 'logged-out'">
-            <button class="btn" @click="login">Login to run</button>
+        <div class="tabsection code" v-if="tab !== 'gql'">
+            <div class="wrapper" v-html="tab.body">
+            </div>
         </div>
-        <div class="login-btn text-center" v-if="state === 'logged-in'">
-            <button class="btn" @click="logout">Logout</button>
-        </div>
-        <div :class="editorClassName" class="gqleditor" :id="idstr">
-        </div>
-        <div v-if="state === 'error'" class="text-danger text-center">Error loading playground</div>
     </div>
     `;
 
@@ -52,7 +65,9 @@
                     heightClass: '',
                     loggedIn: false,
                     hasSchema: false,
+                    tab: 'gql',
                     idstr,
+                    equivalents: [],
                 },
                 methods: {
                     login() {
@@ -66,9 +81,11 @@
                 computed: {
                     editorClassName() {
                         return [
+                            this.tab === 'gql' ? 'withgql' : '',
                             this.hasSchema ? 'schema' : null,
                             this.state === 'logged-out' ? 'logged-out' : 'logged-in',
-                            this.heightClass || '',
+                            (this.tab === 'gql' ? this.heightClass : null) || '',
+                            this.equivalents.length ? 'tabs' : '',
                         ].join(' ');
                     }
                 },
@@ -103,14 +120,18 @@
 
                         let spl = element.innerText.split(/==>/g);
                         let [query] = spl.splice(0, 1);
-                        let matched = spl.map(x => /^\s*(\$?)([a-zA-Z]+)([\r\n\s]+((.|\r|\n)*))?$/g.exec(x) || []);
+                        let matched = spl.map(x => ({
+                            match: /^\s*(\$?)([a-zA-Z]+)([\r\n\s]+((.|\r|\n)*))?$/g.exec(x) || [],
+                            val: x,
+                        }));
                         const variables = {};
-                        for (let [_, dol, k, __, v] of matched) {
+                        for (let {match, val} of matched) {
+                            const [full, dol, k, __, v] = match;
                             if (!k)
                                 continue;
                             if (dol) {
-                                v = '(function() { return ' + v + ';})()';
-                                variables[k] = eval(v);
+                                const toEval = '(function() { return ' + v + ';})()';
+                                variables[k] = eval(toEval);
                             } else {
                                 switch (k) {
                                     case 'height':
@@ -123,6 +144,12 @@
                                     case 'schema':
                                         this.hasSchema = true;
                                         break;
+                                    case 'wrapper':
+                                        const [__, language, code] = /^([^\s]+)\s+(.+)$/.exec(v.trim());
+                                        this.equivalents.push({
+                                            language,
+                                            body: Prism.highlight(code.trim(), Prism.languages[language.toLowerCase()], language.toLowerCase()),
+                                        });
                                 }
                             }
 

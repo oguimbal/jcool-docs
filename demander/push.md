@@ -151,6 +151,9 @@ mutation CreateDispute($facts: [FactDataInput!]) {
         answer: 2500
     }
 ]
+
+==> wrapper Typescript
+await api.createDispute({ /* Creation data (see GraphQL) */});
 ```
 
 
