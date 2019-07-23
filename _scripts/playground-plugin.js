@@ -8,6 +8,9 @@
         <div class="login-btn text-center" v-if="state === 'logged-out'">
             <button class="btn" @click="login">Login to run</button>
         </div>
+        <div class="login-btn text-center" v-if="state === 'logged-in'">
+            <button class="btn" @click="logout">Logout</button>
+        </div>
         <div :class="editorClassName" class="gqleditor" :id="idstr">
         </div>
         <div v-if="state === 'error'" class="text-danger text-center">Error loading playground</div>
@@ -54,6 +57,10 @@
                 methods: {
                     login() {
                         auth.show();
+                    },
+                    logout() {
+                        auth.logout();
+                        this.state = 'logged-out';
                     }
                 },
                 computed: {

@@ -26,10 +26,34 @@ They must be passed as a header with every GraphQL request you will issue to us:
 
 # Dev environment
 
-We provide a *dev* environment, where no charge applies, and no real opponent will be contacted: Your are safe to do whatever you like on this environment, there will be no big consequence.
+We have open our *staging* environment, where no charge applies, and no real opponent will be contacted: Your are safe to do whatever you like on this environment, there will be no big consequence.
 
-The dev api is available through [the playground](/playground.md), where you will be prompted to create a dev api key. Note that you could also access it directly  [here](https://api.staging.justice.cool/v1) if you already have one.
+
+- Justice.cool staging app is available at [app.staging.justice.cool](https://app.staging.justice.cool/), where you can [create a DEV api key](https://app.staging.justice.cool/subscribe).
+- The endpoint you must request for this environment is [api.staging.justice.cool/v1](https://api.staging.justice.cool/v1)
+- You can play with this endpoint via [the playground](/playground.md), or via any interactive tutorial in this documentation.
+
+!> Do not use this environment in your **production** environment: It has no effect IRL :/
 
 ?> Instead of contacting real opponents, justice.cool will send you an email at the contact address you provided when creating your dev key.
 
 ?> You will notice that we call your *dev* environment corresponds to our *staging* environment. As such, it will include all the latest features we have not pushed in production yet. It might also be a bit more unstable, and we guarantee no SLA for it.
+
+
+# Production environment
+
+This is the *real* justice.cool. Charges may apply.
+
+- You can create a production api key [here](https://app.justice.cool/subscribe)
+- The production endpoint you must request is [api.justice.cool/v1](https://api.justice.cool/v1)
+
+!> Real opponents will be contacted ! Do not play with this environment !
+
+!> Charges may apply !
+
+
+# Where to start ?
+
+You can either explore our API through [the playground](/playground.md),
+look at naive example API implementations examples [here](https://gitlab.com/justice.cool/autoresponders/tree/master/src/auto-reponders),
+or find the right tutorial for you in this documentation and follow it.

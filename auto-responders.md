@@ -12,14 +12,19 @@ To use an auto-responder, just use the below autoresponder codes as company iden
 
 !> Auto-responders only exist on the **staging** environment, you cannot use them in prod.
 
-## AR-ACCEPT *(Accepts everything)*{docsify-ignore-all}
+## AR-ACCEPT *(Accepts everything)* {docsify-ignore-all}
 
 This auto-responder will accept everything you say.
 
 If you push him a new dispute, it will accept your conditions and your claims right away, and the mediation will end.
+
+?> Source can be found [here](https://gitlab.com/justice.cool/autoresponders/tree/master/src/auto-reponders/accepts-all.ts)
 
 ## AR-REJECT-CLAIMS *(Rejects all claims)*
 
 This auto-responder wil accept every fact, but will refuse all claims.
 
 Thus, if you push him a new dispute, mediation will directly fail (because the fake opponent has refused all negociation without counter-proposition).
+
+
+?> Source can be found [here](https://gitlab.com/justice.cool/autoresponders/tree/master/src/auto-reponders/rejects-claims.ts)
