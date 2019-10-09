@@ -19,7 +19,7 @@ Justice.cool also provides optional services to ease the process, which are opt-
 
 A bit of code can be worth a thousand lines:
 
-?> Dont be affraid to run the code below, it will create a dispute on the **staging** environment, which is free, and which does not contact your opponent in real life.
+?> Dont be afraid to run the code below, it will create a dispute on the **staging** environment, which is free, and which does not contact your opponent in real life.
 
 ```playground
 ==> height very-tall

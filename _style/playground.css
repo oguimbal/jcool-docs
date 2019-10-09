@@ -98,9 +98,9 @@
 }
 
 /* hide docs & schema */
-.gqleditor:not(.schema) .graphiql-wrapper>div>div:nth-child(2) {
+/* .gqleditor:not(.schema) .graphiql-wrapper>div>div:nth-child(2) {
     display: none;
-}
+} */
 
 /* from https://cdn.jsdelivr.net/npm/graphql-playground-react/build/static/css/index.css */
 .gqleditor a, .gqleditor code, .gqleditor h1, .gqleditor h2, .gqleditor h3, .gqleditor h4, .gqleditor p, .gqleditor pre, .gqleditor ul{margin:0;padding:0;color:inherit}
