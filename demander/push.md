@@ -25,47 +25,6 @@ You can find all the variables description in the tabs **Docs** and **Schema** i
 
 ```playground
 ==> height very-tall
-==> gql
-mutation CreateDispute($facts: [FactDataInput!]) {
-  createDispute(
-    data: {
-      # tells justice.cool to create a form if some info is missing
-      features: [onboarding]
-      # how claims will be created/deleted
-      updateMode: auto
-      # how contracts will be signed
-      signatureMode: auto
-      # an arbitrary external ID that might be useful to you
-      externalId: "my id"
-      # Data describing the litigation. See "Query variables" tab below
-      facts: $facts
-      # Who is the demander of this dispute ?
-      demanders: [{ person: { firstName: "Perh", lastName: "Sohn" } }]
-      # Who is the opponent in this dispute ?
-      opponent: {
-        # opponent is a company: must be identified using SIREN
-        company: { country: france, identifier: "80314744600022" }
-        # when opponent is a company, contact means are optional
-        contactMeans: [
-          # you can specify this to tell justice.cool to also contact company as it is used to
-          { auto: true, mode: free }
-          # specifying this, justice.cool will also send a "recommandé électronique" to this address to contact them:
-          { email: "perh.sohn@nobody.com", mode: premium }
-        ]
-      }
-    }
-  ) {
-    # == selects the created dispute ID
-    id
-    details {
-      link
-    }
-    # == if some info is missing, this form must be filled
-    form {
-      link
-    }
-  }
-}
 ==> variable facts
 [   {
         variable: 'litigationType',
@@ -152,6 +111,48 @@ mutation CreateDispute($facts: [FactDataInput!]) {
     }
 ]
 
+==> gql
+mutation CreateDispute($facts: [FactDataInput!]) {
+  createDispute(
+    data: {
+      # tells justice.cool to create a form if some info is missing
+      features: [onboarding]
+      # how claims will be created/deleted
+      updateMode: auto
+      # how contracts will be signed
+      signatureMode: auto
+      # an arbitrary external ID that might be useful to you
+      externalId: "my id"
+      # Data describing the litigation. See "Query variables" tab below
+      facts: $facts
+      # Who is the demander of this dispute ?
+      demanders: [{ person: { firstName: "Perh", lastName: "Sohn" } }]
+      # Who is the opponent in this dispute ?
+      opponent: {
+        # opponent is a company: must be identified using SIREN
+        company: { country: france, identifier: "80314744600022" }
+        # when opponent is a company, contact means are optional
+        contactMeans: [
+          # you can specify this to tell justice.cool to also contact company as it is used to
+          { auto: true, mode: free }
+          # specifying this, justice.cool will also send a "recommandé électronique" to this address to contact them:
+          { email: "perh.sohn@nobody.com", mode: premium }
+        ]
+      }
+    }
+  ) {
+    # == selects the created dispute ID
+    id
+    details {
+      link
+    }
+    # == if some info is missing, this form must be filled
+    form {
+      link
+    }
+  }
+}
+
 ==> wrapper Typescript
 await api.createDispute({
       // tells justice.cool to create a form if some info is missing
@@ -183,6 +184,7 @@ await api.createDispute({
       ]
     }
   });
+
 ```
 
 
@@ -210,7 +212,7 @@ The id returned in the response is in the form "CFR-YYYYMMDD-xxx" where YYYYMMDD
 
 If some information is missing, the dispute **will** be created (thus, you will have an ID), in a dormant state. But you will also be given the *form* property, which contains a link to a form that must be filled to complete the dispute.
 
-*Example:* You could also get in the answer above something like this:
+*Example:* When using `'onboarding'` feature, could also get in the answer above something like this:
 
 ```json
 [...]
@@ -281,6 +283,15 @@ For instance, the request below creates a new dispute with only two custom claim
 
 
 ```playground
+==> height tall
+==> variable opponent
+{
+    company: { country: 'france', identifier: '80314744600022' },
+    contactMeans: [
+        { auto: true, mode: 'free' }
+    ]
+}
+
 ==> gql
 mutation CreateDispute($opponent: OpponentInput!) {
   createDispute(
@@ -323,14 +334,6 @@ mutation CreateDispute($opponent: OpponentInput!) {
   }
 }
 
-==> height tall
-==> variable opponent
-{
-    company: { country: 'france', identifier: '80314744600022' },
-    contactMeans: [
-        { auto: true, mode: 'free' }
-    ]
-}
 ```
 
 !> It might not be a good idea to push this kind of raw custom claims without variables: You should also push variables, which represents facts that will be discussed between you and your opponent. Without those, you have little material to discuss/negociate on in order to help you find an amicable solution.

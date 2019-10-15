@@ -144,7 +144,7 @@
                                                 query,
                                                 name: 'my query',
                                                 headers,
-                                                variables: JSON.stringify(variables),
+                                                variables: JSON.stringify(variables, null, '    '),
                                             }]
                                         });
                                     this.equivalents.push('gql');
