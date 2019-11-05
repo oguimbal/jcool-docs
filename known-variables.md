@@ -1,6 +1,6 @@
 # Variables  {docsify-ignore-all}
 
-Variables are all the facts that could be usefull to justice.cool during mediation
+Variables are all the facts that could be useful to justice.cool during mediation
 
 <vue>
     <template>
@@ -58,7 +58,10 @@ Variables are all the facts that could be usefull to justice.cool during mediati
                 async doFind(txt) {
                     this.currentSearch = txt;
                     const data = await auth.queryPrivate(`query FindVar($txt: String!) {modelize { publicVariables(filter: $txt) {id name scope type question litigationTypes}}}`, {txt});
-                    data.modelize.publicVariables.forEach(v => v.litigationTypes = v.litigationTypes.join(', '))
+                    data.modelize.publicVariables.forEach(v => {
+                        if (v.litigationTypes)
+                            v.litigationTypes = v.litigationTypes.join(', ')
+                    })
                     if (this.currentSearch === txt) {
                         this.results = data.modelize.publicVariables;
                         this.currentSearch = null;
@@ -112,7 +115,7 @@ Claims that are supported by justice.cool: Those claims are available for automa
 <vue>
     <template>
         <form class="search-container">
-            <input type="text" @keyup="find" class="search-bar" placeholder="Search for a variable">
+            <input type="text" @keyup="find" class="search-bar" placeholder="Search for a claim">
             <a href="#"><img class="search-icon" src="/_media/search-icon.png"></a>
         </form>
         <table>
@@ -135,7 +138,7 @@ Claims that are supported by justice.cool: Those claims are available for automa
                     <v-popover>
                         <span>
                             <i class="fa fa-info-circle"></i>
-                            {{i.variables.length}} variables
+                            {{i.variables && i.variables.length || 0}} variable(s)
                         </span>
                         <template slot="popover">
                             <ul>
@@ -159,6 +162,10 @@ Claims that are supported by justice.cool: Those claims are available for automa
                 async doFind(txt) {
                     this.currentSearch = txt;
                     const data = await auth.queryPrivate(`query FindClaim($txt: String!) {modelize { publicClaims(filter: $txt) {id name litigationType variables {id name}}}}`, {txt});
+                    data.modelize.publicClaims.forEach(v => {
+                        if (v.litigationTypes)
+                            v.litigationTypes = v.litigationTypes.join(', ')
+                    })
                     if (this.currentSearch === txt) {
                         this.results = data.modelize.publicClaims;
                         this.currentSearch = null;
