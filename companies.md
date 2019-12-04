@@ -11,13 +11,14 @@ If you think that a company is missing among the validated companies and may be 
 <vue>
     <template>
         <div style="margin-bottom:10px;">
-        {{litigationType}}
             <select class="select-type" v-model="litigationType" @change="onLitigationTypeChange">
                 <option value="">-- Filter by litigation type --</option>
                 <option v-for="opt in litigationTypeOpt" :value="opt.value">
                     <span> {{ opt.display }}</span>
                 </option>
             </select>
+            <br />
+            <span>* This filter will only be applied for validated companies.</span>
         </div>
         <form class="search-container">
             <input type="text" @keyup="find" class="search-bar" placeholder="Search for a company">
@@ -33,8 +34,8 @@ If you think that a company is missing among the validated companies and may be 
                 <td>
                     <div class="varid">
                         <i class="fa fa-copy" tooltip="Copy to clipboard" @click="copy(i.value)"></i>
-                        {{i.value}}
                         <i v-if="i.value.startsWith('known:')" class="fa fa-check-circle" tooltip="Validated company"></i>
+                        {{i.value}}
                     </div>
                 </td>
                 <td>{{i.data.name}}</td>
@@ -108,8 +109,11 @@ If you think that a company is missing among the validated companies and may be 
 .varid .fa {
     opacity: 0.5;
     transition: opacity 0.3s;
-    cursor: pointer;
     margin-right: 0.3em;
+}
+.varid .fa-copy
+{
+    cursor: pointer;
 }
 .varid .fa:hover {
     opacity: 1;
