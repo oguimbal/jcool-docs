@@ -6,6 +6,7 @@
 - **Dev tools**
     - [Playground](playground.md)
     - [Known variables](known-variables.md)
+    - [Upload documents](documents.md)
     - [Companies](companies.md)
     - [Auto reponders](/auto-responders.md)
     - [API Wrappers](wrappers.md)
