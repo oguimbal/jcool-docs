@@ -289,6 +289,8 @@ It will return a raw body (string) containing a reference that you can pass as a
 
 ?> The uploaded document reference should look like `temp:XXXXX`
 
+!> An uploaded document reference can be used multiple times in a **single** call to `createDispute`, but it cannot be reused later.
+
 ### Option 3: Pre-upload each documents in multiple files
 
 There are cases where you could have two documents (say a `.jpg` and a `.pdf` file), which corresponds to a single document you want to upload.
@@ -307,6 +309,8 @@ Each POST expects:
 - The document mime type in the `Content-Type` header
 
 ?> The "intermediary" upload refrence should like `upload:XXXXXX`, while the "final" uploaded document reference should look like `temp:XXXXX`
+
+!> An uploaded document reference can be used multiple times in a **single** call to `createDispute`, but it cannot be reused later.
 
 # How do I fill "claims" ?
 
