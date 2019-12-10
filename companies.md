@@ -84,7 +84,7 @@ If you think that a company is missing among the validated companies and may be 
                 },
                 find: debounce(function(e) {
                     this.doFind(e.target.value);
-                }, 100),
+                }, 500),
             },
             mounted() {
                 this.doFind('');
@@ -96,7 +96,7 @@ If you think that a company is missing among the validated companies and may be 
 
 <style>
 .select-type {
-    height: 40px; 
+    height: 40px;
     font-size: 16px
 }
 .varid {
