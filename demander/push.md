@@ -370,7 +370,7 @@ But this document will not be asked most of the time (for major passengers).
 
 In short, you should not assume to always perfectly know which data to send.
 
-The surely could seems to be constraint, but leveraging justice.cool modelization can bring you and your opponent:
+You could surely see this to be hard constraint, but leveraging justice.cool modelization can bring you and your opponent:
 
 - A justice.cool score which helps both parties to evaluate the situation.
 - Logical explanations telling how the claim amounts have been computed, and why you are entitled to them.
