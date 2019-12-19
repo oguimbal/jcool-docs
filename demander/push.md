@@ -129,8 +129,8 @@ mutation CreateDispute($facts: [FactDataInput!]) {
       demanders: [{ person: { firstName: "Perh", lastName: "Sohn" } }]
       # Who is the opponent in this dispute ?
       opponent: {
-        # opponent is a company: must be identified using SIREN
-        company: { country: france, identifier: "80314744600022" }
+        # opponent is a company: must be identified using SIREN, or an ID know via https://docs.justice.cool/#/companies
+        company: { identifier: "siret:80314744600022" }
         # when opponent is a company, contact means are optional
         contactMeans: [
           # you can specify this to tell justice.cool to also contact company as it is used to
@@ -167,8 +167,8 @@ await api.createDispute({
       demanders: [{ person: { firstName: "Perh", lastName: "Sohn" } }]
       // Who is the opponent in this dispute ?
       opponent: {
-        // opponent is a company: must be identified using SIREN
-        company: { country: Country.France, identifier: "80314744600022" }
+        // opponent is a company: must be identified using SIREN, or an ID know via https://docs.justice.cool/#/companies
+        company: { identifier: "siret:80314744600022" }
         // when opponent is a company, contact means are optional
         contactMeans: [
           // you can specify this to tell justice.cool to also contact company as it is used to
@@ -289,7 +289,7 @@ For instance, the request below creates a new dispute with only two custom claim
 ==> height tall
 ==> variable opponent
 {
-    company: { country: 'france', identifier: '80314744600022' },
+    company: { identifier: 'siret:80314744600022' },
     contactMeans: [
         { auto: true, mode: 'free' }
     ]

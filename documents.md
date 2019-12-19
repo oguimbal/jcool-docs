@@ -23,7 +23,7 @@ It will require:
 
 - This url to respond to a GET request
 - This url to be fully authentified (i.e. justice.cool will not send any cookie)
-- Justice.cool will expect this url to send the `Content-Type` response header which tells which kind of document this file is (via its mime type) - most static storage types support this natively.
+- Justice.cool will expect this url to send the `Content-Type` response header which tells which kind of document this file is (via its mime type) - most static storage hostings support this natively.
 
 ?> All your files will be compressed and converted to PDF.
 
