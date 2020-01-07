@@ -126,6 +126,8 @@ mutation CreateDispute($facts: [FactDataInput!]) {
       # Data describing the litigation. See "Query variables" tab below
       facts: $facts
       # Who is the demander of this dispute ?
+      # If you specify either "person" or company", then this means that your company has been mandated for their representation.
+      # ... if your company is the demander, then leave this blank.
       demanders: [{ person: { firstName: "Perh", lastName: "Sohn" } }]
       # Who is the opponent in this dispute ?
       opponent: {
@@ -164,6 +166,8 @@ await api.createDispute({
       // an arbitrary external ID that might be useful to you
       externalId: "my id"
       // Who is the demander of this dispute ?
+      // If you specify either "person" or company", then this means that your company has been mandated for their representation.
+      // ... if your company is the demander, then leave this blank.
       demanders: [{ person: { firstName: "Perh", lastName: "Sohn" } }]
       // Who is the opponent in this dispute ?
       opponent: {
@@ -309,7 +313,10 @@ mutation CreateDispute($opponent: OpponentInput!) {
       # Who is the demander of this dispute ?
       demanders: [
         {
+          # In this case, this means that the demander is a person that has mandated your company for this dispute.
+          # ... if your company is the demander, then leave this blank.
           person: { firstName: "Perh", lastName: "Sohn" }
+          # Claims for this demander
           claims: [
             # Add a monetary compensation claim
             {
