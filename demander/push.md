@@ -45,9 +45,6 @@ You can find all the variables description in the tabs **Docs** and **Schema** i
         variable: 'dateOfTheFault',
         answer: moment().add(-15, 'days').toDate()
     }, {
-        variable: 'ageOfTheApplicant',
-        answer: 35
-    }, {
         variable: 'typeOfFault',
         answer: 'blablah',
     }, {
@@ -98,6 +95,10 @@ You can find all the variables description in the tabs **Docs** and **Schema** i
 
     // those variables are "private" (tied to a demander)
     // but you can specify them globaly (i.e. not on the demander) when there is only one demander.
+    {
+        variable: 'birthDate',
+        answer: '1987-02-28'
+    },
     {
         variable: 'positionHeld',
         answer: 'managerialStaff'

@@ -31,23 +31,7 @@ Variables are all the facts that could be useful to justice.cool during mediatio
                         <i v-if="i.question" v-tooltip.bottom="i.question" class="fa fa-check"></i>
                     </td>
                     <td @click="clikedValueDesc(i)" class="clickable">
-                        <span v-if="!isPlainEnum(i.type)" v-tooltip.bottom="tooltipFor(i.type)" >
-                            <i v-if="isSuggestedEnum(i.type)" class="fa fa-info-circle"></i>
-                            {{i.type.primary}}
-                        </span>
-                        <v-popover v-if="isPlainEnum(i.type)">
-                            <span>
-                                <i class="fa fa-info-circle"></i>
-                                {{i.type.primary}}
-                            </span>
-                            <template slot="popover">
-                                <ul>
-                                    <li v-for="o in i.type.options">
-                                        <b>{{o.value}}</b> <br> &nbsp; &nbsp; <i>{{o.display}}</i>
-                                    </li>
-                                </ul>
-                            </template>
-                        </v-popover>
+                        <type-details :type="i.type" />
                     </td>
                 </tr>
                 <tr v-if="showDynEnum(i)">
@@ -94,23 +78,6 @@ Variables are all the facts that could be useful to justice.cool during mediatio
                 find: debounce(function(e) {
                     this.doFind(e.target.value);
                 }, 100),
-                isPlainEnum(type) {
-                    if (type.primary !== 'enum')
-                        return false;
-                    if (!type.options || typeof type.options === 'string')
-                        return false;
-                    return true;
-                },
-                isSuggestedEnum(type) {
-                    return type.primary === 'enum' && type.options && typeof type.options === 'string';
-                },
-                tooltipFor(type) {
-                    if (type.primary !== 'enum')
-                        return '';
-                    if (!type.options || typeof type.options === 'string')
-                        return 'Click to open option suggestor';
-                    return '';
-                },
                 clikedValueDesc(i) {
                     Vue.set(i, '$show', !i.$show);
                     if (!i.$show)
@@ -246,7 +213,7 @@ Claims that are supported by justice.cool: Those claims are available for automa
 }
 .clickable {
     cursor: pointer;
-} 
+}
 .varid {
     width: 15em;
     overflow: hidden;
