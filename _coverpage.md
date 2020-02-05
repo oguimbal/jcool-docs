@@ -3,7 +3,7 @@
 
 # Justice.cool API <small>1.0</small>
 
-> Contact your opponents, automate your mediations.
+> Contact your opponents, make your mediations easier.
 
 - A modern API to automate your disputes resolution via [justice.cool](https://justice.cool)
 
