@@ -5,7 +5,7 @@
 
 > Contact your opponents, make your mediations easier.
 
-- A modern API to automate your disputes resolution via [justice.cool](https://justice.cool)
+- A modern API to facilitate your disputes resolution via [Justice.cool](https://justice.cool)
 
 [Get Started](/?id=justicecool)
 <!--
