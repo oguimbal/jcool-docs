@@ -249,7 +249,7 @@ Variables are facts that will be discussed one by one during the mediation proce
 
 ?> Each fact has its own type. Check the [existing variables](/known-variables.md) for details.
 
-?> `Document` are variables which are a bit special, check the [Upload documents](/documents.md) section to learn how to upload them.
+?> `Document` are variables which are a bit special, check the [Upload documents](/general/documents.md) section to learn how to upload them.
 
 # How do I fill "claims" ?
 
