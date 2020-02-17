@@ -44,7 +44,7 @@ We have opened our *staging* environment, where no charge applies and no real op
 
 This is the *real* justice.cool. Charges may apply.
 
-- You can create a production api key [here](https://app.justice.cool/subscribe)
+- You can create a production api key [here](https://app.justice.cool/dev/api)
 - The production endpoint you must request is [api.justice.cool/v1](https://api.justice.cool/v1)
 
 !> Real opponents will be contacted ! Do not play with this environment !
