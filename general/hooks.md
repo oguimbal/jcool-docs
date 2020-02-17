@@ -1,6 +1,6 @@
 # What is an API hook ?
 
-API hooks allows your servers to be notified when something happens on Justice.cool.
+API hooks allow your servers to be notified when something happens on Justice.cool.
 
 API hooks can be configured from your user interface, at [app.justice.cool/dev](https://app.justice.cool/dev)  (or at [app.staging.justice.cool/dev](https://app.staging.justice.cool/dev) for the dev environment).
 
@@ -8,7 +8,7 @@ You will be asked for an action to be performed for each type of event that can 
 
 - `Off` : Your API will not be notified, but it is very likely that you will receive an email instead to notify you.
 - `Hook` : Justice.cool will perform an `HTTP POST` request to the given URL each time there is a new event  (see [POST strategy](#Post-strategy) section below)
-- `Polling` : You will fetch new events regularily via our API (see [Polling strategy](#Polling-strategy) section below)
+- `Polling` : You will fetch new events regularly via our API (see [Polling strategy](#Polling-strategy) section below)
 
 
 !> *IMPORTANT* Network reliability being what it is, and in order to prevent other unexpected side-effects, we strongly recommend you to implement [idempotence](https://stackoverflow.com/questions/1077412/what-is-an-idempotent-operation) on your hook operations.
@@ -29,7 +29,7 @@ You are not required to implement all of them: You can progressively opt-in our 
 | `mediationNegociation` | Your opponent has posted a counter proposition in this dispute | - | Agree/reject/counterpropose your opponents proposition |
 | `requiredSignature` | When using `signatureMode: manual`, this will be called when a contract needs to be signed | - | Sign the contract |
 | `newDispute` | Someone wants to start a mediation with you | - | Agree/reject/counterpropose your opponent proposition |
-| `sleepingDispute` | You did not complete your file in time, so we've closed your file | - | - |
+| `sleepingDispute` | You did not complete your file in time, so your file has been closed | - | - |
 
 
 # POST strategy
@@ -54,7 +54,7 @@ Each hook you defined will be called to the given adress, using an `HTTP POST`, 
 
 See [section below](#which-data-will-i-get-) for details about hook-specific data that might appear in the `data` property.
 
-Justice.cool will consider the hook as processed once your server replied a success HTTP status code.
+Justice.cool will consider the hook as processed once your server replied with a success HTTP status code.
 
 ?> In case your server failed to respond to a hook, Justice.cool will retry to call it after 3min, 10min, 50min, 3h and then 10h. It will be retried no further afterwards.
 
@@ -169,7 +169,7 @@ When someone wrote a message to a dispute (either by mail or via the user area),
 
 ## Mediation success
 
-When a mediation succeeds, this hook will be called with data will contain a link which enables you to download the contract that you and your opponent have signed.
+When a mediation succeeds, this hook will be called with data that contains a link which enables you to download the contract that you and your opponent have signed.
 
 ```json
 {
