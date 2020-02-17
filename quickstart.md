@@ -29,11 +29,9 @@ The key must be passed as a header with every GraphQL request you will issue to 
 We have opened our *staging* environment, where no charge applies and no real opponent will be contacted: you are safe to test your requests and do whatever you like on this environment, there will be no consequence.
 
 
-- Justice.cool staging app is available at [app.staging.justice.cool](https://app.staging.justice.cool/), where you can [create a DEV api key](https://app.staging.justice.cool/subscribe).
+- Justice.cool staging app is available at [app.staging.justice.cool](https://app.staging.justice.cool/), where you can [create a DEV api key](https://app.staging.justice.cool/dev/api).
 - The endpoint you must request for this environment is [api.staging.justice.cool/v1](https://api.staging.justice.cool/v1)
 - You can play with this endpoint via [the playground](/playground.md), or via any interactive tutorial in this documentation.
-
-**Note:** When creating an API key, you will be asked to create a personal justice.cool account. In your profile page, head to the tab *Informations de l'entreprise*, go to the *developer information* and add a new API key. 
 
 !> Do not use this environment in your **production** environment: It has no effect IRL :/
 
