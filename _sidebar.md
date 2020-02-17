@@ -2,7 +2,7 @@
 - [**Quickstart**](quickstart.md)
 - [**[Tutorial] Demander companies**](/demander/)
   - [Push a new dispute](/demander/push.md)
-  - [Explanation: What will be the experience of my opponent ?](/demander/opponent-experience.md)
+  <!-- - [Explanation: What will be the experience of my opponent ?](/demander/opponent-experience.md) -->
 - [**General resources**](/general/)
     - [Api Hooks & Notifications](/general/hooks.md)
     - [Upload documents](/general/documents.md)
