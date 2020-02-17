@@ -11,7 +11,7 @@ You will be asked for an action to be performed for each type of event that can 
 - `Polling` : You will fetch new events regularly via our API (see [Polling strategy](#Polling-strategy) section below)
 
 
-!> *IMPORTANT* Network reliability being what it is, and in order to prevent other unexpected side-effects, we strongly recommend you to implement [idempotence](https://stackoverflow.com/questions/1077412/what-is-an-idempotent-operation) on your hook operations.
+!> *IMPORTANT* It should never be the case, but always assume that you could receive a hook message multiple times. Thus, to avoid unexpected side-effects, we strongly recommend you to implement an [idempotent](https://stackoverflow.com/questions/1077412/what-is-an-idempotent-operation) hook processing. Tip: Each hook event has an unique ID which you can use to filter out events that you already have processed.
 
 # List of hook events
 
@@ -41,7 +41,7 @@ Each hook you defined will be called to the given adress, using an `HTTP POST`, 
 
 ```typescript
 {
-  "hookId": "XXXXXXXXX", // Hook ID
+  "hookId": "XXXXXXXXX", // Hook ID - You can use this to implement idempotency
   "hookName": "someHook", // Hook type (see HookName enum)
   "disputeId": "CFR-XXXXXX", // Associated dispute ID
   "externalId": "YOUR-REF", // A reference that you might have given us when creating or associating with the dispute
@@ -87,8 +87,10 @@ mutation GetHooks {
             externalId
         }
 
-        # Get some info about this hook
+        # Hook ID - You can use this to implement idempotency
         hookId
+
+        # Get some info about this hook
         hookName
         data
         time
