@@ -24,7 +24,7 @@ If you push him a new dispute, it will accept your conditions and your claims ri
 
 This auto-responder wil accept every fact, but will refuse all claims.
 
-Thus, if you push him a new dispute, mediation will directly fail (because the fake opponent has refused all negociation without counter-proposition).
+Thus, if you push him a new dispute, mediation will directly fail (because the fake opponent has refused all negociation without counter-proposal).
 
 
 ?> Source can be found [here](https://gitlab.com/justice.cool/autoresponders/tree/master/src/auto-reponders/rejects-claims.ts)

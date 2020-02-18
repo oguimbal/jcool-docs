@@ -21,7 +21,7 @@ The key must be passed as a header with every GraphQL request you will issue to 
 
 !> **YOUR API KEY IS PRIVATE ! DO NOT SHARE IT !**
 
-!> In the production environment, **real charges** might incur and **real opponents** will be contacted. If you're looking for testing our api, head to [dev environment](#dev-environment)
+!> In the production environment, **real charges** might incur and **real opponents** will be contacted. If you are looking for testing our api, head to [dev environment](#dev-environment)
 
 
 # Dev environment
@@ -35,14 +35,14 @@ We have opened our *staging* environment, where no charge applies and no real op
 
 !> Do not use this environment in your **production** environment: It has no effect IRL :/
 
-?> Instead of contacting real opponents, justice.cool will send you an email at the contact address you provided when creating your dev key.
+?> Instead of contacting real opponents, Justice.cool will send you an email at the contact address you provided when creating your dev key.
 
-?> You will notice that we call your *dev* environment corresponds to our *staging* environment. As such, it will include all the latest features we have not pushed in production yet. It might also be a bit more unstable, and we guarantee no SLA for it.
+?> You will notice that what we call your *dev* environment corresponds to our *staging* environment. As such, it will include all the latest features we have not pushed in production yet. It might also be a bit more unstable, and we guarantee no SLA for it.
 
 
 # Production environment
 
-This is the *real* justice.cool. Charges may apply.
+This is the *real* Justice.cool. Charges may apply.
 
 - You can create a production api key [here](https://app.justice.cool/dev/api)
 - The production endpoint you must request is [api.justice.cool/v1](https://api.justice.cool/v1)

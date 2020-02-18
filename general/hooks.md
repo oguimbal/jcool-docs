@@ -19,7 +19,7 @@ Here is a quick description of the hooks you might want to implement.
 
 Each hook corresponds to an event in a dispute lifecycle. Some might be called often, some might never be called.
 
-You are not required to implement all of them: You can progressively opt-in our API and improve your automation step-by-step, based on your needs.
+You are not required to implement all of them: you can progressively opt-in our API and improve your automation step-by-step, based on your needs.
 
 | Hook | Event description | Data received | Required action |
 | :----: | ----------- | :-------------: | :---------------: |
@@ -28,7 +28,7 @@ You are not required to implement all of them: You can progressively opt-in our 
 | `message` | Someone sent a message to this dispute | - | - |
 | `mediationNegociation` | Your opponent has posted a counter proposition in this dispute | - | Agree/reject/counterpropose your opponents proposition |
 | `requiredSignature` | When using `signatureMode: manual`, this will be called when a contract needs to be signed | - | Sign the contract |
-| `newDispute` | Someone wants to start a mediation with you | - | Agree/reject/counterpropose your opponent proposition |
+| `newDispute` | Someone wants to start a mediation with you | - | Agree/reject/counterpropose your opponent proposal |
 | `sleepingDispute` | You did not complete your file in time, so your file has been closed | - | - |
 
 

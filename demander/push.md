@@ -270,20 +270,20 @@ To better understand how claims are created and later updated during mediation, 
     * `eligibilityMode`: It overrides the global `updateMode` for the given claim, thus defining if justice.cool is in charge of creating/deleting this claim when needed.
     * `compensationMode`: It tells justice.cool how the amount of this claim must be computed.
 
-In each case, setting a parameter to "manual" tells justice.cool: *dont delete or update this automatically, i'm in charge of it !*.
+In each case, setting a parameter to "manual" tells justice.cool: *do not delete or update this automatically, i'm in charge of it !*.
 
 ?> If you use `updateMode: manual`, then you **must** specify claims manually.
 
 ?> If you dot not provide any specific claim, then justice.cool will automatically compute them based on the "variables" you provided (`updateMode` mode is not "manual").
 
-This mechanism give you a wide range of options to handle your claims, from completely automatic to completely manual. We will review below a couple of common use cases.
+This mechanism gives you a wide range of options to handle your claims, from completely automatic to completely manual. We will review below a couple of common use cases.
 
 
 ## Completely custom claims
 
 
 You can create completely custom claims, which justification will be opaque to justice.cool (thus also possibly opaque to your opponent).
-This might be usefull for one-time or very specific litigations types which you know very well about, or that are not well handled by justice.cool in your opinion (by the way, dont hesitate to tell us more about them so we can improve justice.cool !).
+This might be usefull for one-time or very specific litigations types which you know very well about, or that are not well handled by justice.cool in your opinion (by the way, do not hesitate to tell us more about them so we can improve justice.cool !).
 
 On another hand, such claims will not be scored, nor updated automatically by justice.cool.
 
@@ -347,15 +347,15 @@ mutation CreateDispute($opponent: OpponentInput!) {
 
 ```
 
-!> It might not be a good idea to push this kind of raw custom claims without variables: You should also push variables, which represents facts that will be discussed between you and your opponent. Without those, you have little material to discuss/negociate on in order to help you find an amicable solution.
+!> It might not be a good idea to push this kind of raw custom claims without variables: you should also push variables, which represent facts that will be discussed between you and your opponent. Without those, you have little material to discuss/negociate on in order to help you find an amicable solution.
 
 ## Claims scored by justice.cool, with custom amount
 
 If you want your claims to be "scored" by justice.cool, you **must** provide on your custom claims a "typeId" that matches a [justice.cool type of claim](/known-variables.md#claim-types).
 
-These claims have been modelized by our jurists and our data scientists and for which an indicative score of your probability of success in court can be provided, based on the word of law, and on machine learning algorithms that will analyze past decisions of cases similar to yours.
+These claims have been modelized by our jurists and our data scientists and for which an indicative score can be provided, based on the word of law, and on machine learning algorithms that will analyze past decisions of cases similar to yours.
 
-?> Creating "scored" claims might help you and your opponent to evaluate your legitimity. Scores are updated each time you negociate a fact with your opponent during the mediation process. It is an indicative score which relies on our jurists understanding of your dispute, and on machine learning algorithms.
+?> Scores are updated each time you negociate a fact with your opponent during the mediation process. It is an indicative score which relies on our jurists understanding of your dispute, and on machine learning algorithms.
 
 
 # Best practices and useful info
@@ -364,17 +364,17 @@ These claims have been modelized by our jurists and our data scientists and for 
 
 Often, you will see your calls to `createDispute` fail. It could happen because a file that you uploaded is unreadable, or because some information is missing.
 
-Just be prepared for that, and implement some kind of "fix-and-retry" mechanism which could for instance call for human attention before retrying.
+Be prepared for that and implement some kind of "fix-and-retry" mechanism which could for instance call for human attention before retrying.
 
-!> When a call fails, read the resulting error message ! It often contain a clear explanation of why your call failed.
+!> When a call fails, read the resulting error message ! It often contains a clear explanation of why your call failed.
 
 ## Be flexible
 
 The justice.cool modelization is highly flexible.
 It means that the variables that will be required to evaluate two similar cases could not exactly be the same.
 
-?> Example: When filing an aerial litigation (delayed plane), if the passenger is minor, then justice.cool will ask you for some information to prove that you are legaly responsible for this passenger.
-But this document will not be asked most of the time (for major passengers).
+?> Example: When filing an aerial litigation (delayed plane), if the passenger is underage, then justice.cool will ask you for some information to prove that you are legaly responsible for this passenger.
+But this document will not be asked most of the time (for adult passengers).
 
 In short, you should not assume to always perfectly know which data to send.
 
