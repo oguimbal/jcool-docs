@@ -25,10 +25,10 @@ You are not required to implement all of them: you can progressively opt-in our 
 | :----: | ----------- | :-------------: | :---------------: |
 | `mediationSuccess` |  A mediation has succeeded | A contract (PDF) | - |
 | `mediationFailure` | A mediation has failed | Proof of mediation failure (PDF) | - |
-| `message` | Someone sent a message to this dispute | - | - |
+| `message` | Someone sent a message to this dispute | The HTML and raw text of the message (translated AND original) and the sender (id, name and role) | - |
 | `mediationNegociation` | Your opponent has posted a counter proposition in this dispute | - | Agree/reject/counterpropose your opponents proposition |
 | `requiredSignature` | When using `signatureMode: manual`, this will be called when a contract needs to be signed | - | Sign the contract |
-| `newDispute` | Someone wants to start a mediation with you | - | Agree/reject/counterpropose your opponent proposal |
+| `newDispute` | Someone wants to start a mediation with you | The link to the form to enter the mediation (invitation form) | Agree/reject/counterpropose your opponent proposal |
 | `sleepingDispute` | You did not complete your file in time, so your file has been closed | - | - |
 
 
@@ -176,6 +176,16 @@ When a mediation succeeds, this hook will be called with data that contains a li
 ```json
 {
   "contract": "https://some-link-to-a-pdf-file"
+}
+```
+
+## Mediation failure
+
+When a mediation fails, this hook will be called with data that contains a link which enables you to download the proof of mediation failure that can be used in front of a judge.
+
+```json
+{
+  "proofOfMediationFailure": "https://some-link-to-a-pdf-file"
 }
 ```
 
