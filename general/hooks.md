@@ -179,6 +179,8 @@ When a mediation succeeds, this hook will be called with data that contains a li
 }
 ```
 
+!> This link will only be valid for 24h after the hook has been enqueued in our systems. Be sure to download it before that (however, the contract will be downloadable via your user space or via our API afterwards).
+
 ## Mediation failure
 
 When a mediation fails, this hook will be called with data that contains a link which enables you to download the proof of mediation failure that can be used in front of a judge.
@@ -189,4 +191,4 @@ When a mediation fails, this hook will be called with data that contains a link 
 }
 ```
 
-!> This link will only be valid for 24h after the hook has been enqueued in our systems. Be sure to download it before that (however, the contract will be downloadable via your user space or via our API afterwards).
+!> This link will only be valid for 24h after the hook has been enqueued in our systems. Be sure to download it before that (however, the document will be downloadable via your user space or via our API afterwards).
