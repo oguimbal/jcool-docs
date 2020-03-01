@@ -150,9 +150,7 @@ mutation CreateDispute($facts: [FactDataInput!]) {
       link
     }
     # == if some info is missing, this form must be filled
-    form {
-      link
-    }
+    form
   }
 }
 
@@ -221,9 +219,7 @@ If some information is missing, the dispute **will** be created (thus, you will 
 
 ```json
 [...]
-"form": {
-    "link": "https://app.staging.justice.cool/form/01DFKD490BADBC4FS95SH5RA16"
-}
+"form": "https://app.staging.justice.cool/form/01DFKD490BADBC4FS95SH5RA16"
 ```
 
 
