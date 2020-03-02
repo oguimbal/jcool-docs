@@ -137,9 +137,9 @@ mutation CreateDispute($facts: [FactDataInput!]) {
         # when opponent is a company, contact means are optional
         contactMeans: [
           # you can specify this to tell justice.cool to also contact company as it is used to
-          { auto: true, mode: free }
-          # specifying this, justice.cool will also send a "recommandé électronique" to this address to contact them:
-          { email: "perh.sohn@nobody.com", mode: premium }
+          { auto: true }
+          # specifying this, justice.cool will also send an email to this address to contact them:
+          { email: "perh.sohn@nobody.com" }
         ]
       }
     }
@@ -175,9 +175,9 @@ await api.createDispute({
         // when opponent is a company, contact means are optional
         contactMeans: [
           // you can specify this to tell justice.cool to also contact company as it is used to
-          { auto: true, mode: ContactMode.Free }
-          // specifying this, justice.cool will also send a "recommandé électronique" to this address to contact them:
-          { email: "perh.sohn@nobody.com", mode: ContactMode.Premium }
+          { auto: true }
+          // specifying this, justice.cool will also send an email to this address to contact them:
+          { email: "perh.sohn@nobody.com" }
         ]
       }
       // Data describing the litigation.
@@ -292,7 +292,7 @@ For instance, the request below creates a new dispute with only two custom claim
 {
     company: { identifier: 'siret:80314744600022' },
     contactMeans: [
-        { auto: true, mode: 'free' }
+        { auto: true }
     ]
 }
 
