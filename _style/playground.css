@@ -33,6 +33,15 @@
 .gqleditor > div > div  {
     height: 400px;
 }
+
+/* tall */
+.withgql.tplroot.medium {
+    height: 630px;
+}
+.withgql.tplroot.medium  .gqleditor > div > div {
+    height: 600px;
+}
+
 /* tall */
 .withgql.tplroot.tall {
     height: 830px;

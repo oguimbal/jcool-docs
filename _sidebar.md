@@ -2,6 +2,11 @@
 - [**Quickstart**](quickstart.md)
 - [**[Tutorial] Demander companies**](/demander/)
   - [Push a new dispute](/demander/push.md)
+
+- **[Tutorial] Negociation**
+  - [Introduction](/negociation/intro.md)
+  - [Negociate facts](/negociation/facts.md)
+  - [Negociate claims](/negociation/claims.md)
   <!-- - [Explanation: What will be the experience of my opponent ?](/demander/opponent-experience.md) -->
 - [**General resources**](/general/)
     - [Api Hooks & Notifications](/general/hooks.md)

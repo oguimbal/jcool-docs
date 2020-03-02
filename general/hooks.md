@@ -23,12 +23,12 @@ You are not required to implement all of them: you can progressively opt-in our 
 
 | Hook | Event description | Data received | Required action |
 | :----: | ----------- | :-------------: | :---------------: |
-| `mediationSuccess` |  A mediation has succeeded | A contract (PDF) | - |
-| `mediationFailure` | A mediation has failed | Proof of mediation failure (PDF) | - |
-| `message` | Someone sent a message to this dispute | The HTML and raw text of the message (translated AND original) and the sender (id, name and role) | - |
-| `mediationNegociation` | Your opponent has posted a counter proposition in this dispute | - | Agree/reject/counterpropose your opponents proposition |
+| `mediationSuccess` |  A mediation has succeeded | [A contract (PDF)](#mediation-success) | - |
+| `mediationFailure` | A mediation has failed | [Proof of mediation failure (PDF)](#mediation-failure) | - |
+| `message` | Someone sent a message to this dispute | [The HTML and raw text of the message (translated AND original) and the sender (id, name and role)](#message-received) | - |
+| `mediationNegociation` | Your opponent has posted a counter proposition in this dispute | - | Agree/reject/counterpropose your opponents proposal - see **Negociation** tutorials |
 | `requiredSignature` | When using `signatureMode: manual`, this will be called when a contract needs to be signed | - | Sign the contract |
-| `newDispute` | Someone wants to start a mediation with you | The link to the form to enter the mediation (invitation form) | Agree/reject/counterpropose your opponent proposal |
+| `newDispute` | Someone wants to start a mediation with you | [The link to the form to enter the mediation (invitation form)](#invitation-to-a-new-mediation) | Agree/reject/counterpropose your opponents proposal - see **Negociation** tutorials |
 | `sleepingDispute` | You did not complete your file in time, so your file has been closed | - | - |
 
 
@@ -134,6 +134,8 @@ Here is the list of specific events that are providing data on hook:
 
 ## Invitation to a new mediation
 
+This is the `newDispute` hook.
+
 When someone invites you to a new mediation, this hook will be called with a link to the invitation from
 
 ```json
@@ -143,6 +145,8 @@ When someone invites you to a new mediation, this hook will be called with a lin
 ```
 
 ## Message received
+
+This is the `message` hook.
 
 When someone wrote a message to a dispute (either by mail or via the user area), you will get some info about this message:
 
@@ -171,6 +175,8 @@ When someone wrote a message to a dispute (either by mail or via the user area),
 
 ## Mediation success
 
+This is the `mediationSuccess` hook.
+
 When a mediation succeeds, this hook will be called with data that contains a link which enables you to download the contract that you and your opponent have signed.
 
 ```json
@@ -182,6 +188,8 @@ When a mediation succeeds, this hook will be called with data that contains a li
 !> This link will only be valid for 24h after the hook has been enqueued in our systems. Be sure to download it before that (however, the contract will be downloadable via your user space or via our API afterwards).
 
 ## Mediation failure
+
+This is the `mediationFailure` hook.
 
 When a mediation fails, this hook will be called with data that contains a link which enables you to download the proof of mediation failure that can be used in front of a judge.
 
