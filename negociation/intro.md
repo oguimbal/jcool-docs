@@ -1,10 +1,10 @@
 # Introduction to ping-pong forms
 
-When both parties (you and your opponent) are involved in a mediation, they will have to interact in order to find an agreement.
+When you and your opponent are involved in a mediation, you will have to interact in order to find an agreement.
 
 When using Justice.cool *manually*, this interaction is performed using several forms that each party will have to fill on a per-turn basis.
 
-As those forms are quite same if you are a demander or a defender, and given that you have to fill them turn by turn, we nicknamed them `ping-pong` forms.
+As those forms are quite the same if you are a demander or a defender, and given that you have to fill them turn by turn, we nicknamed them `ping-pong` forms.
 
 Those forms are split in two different parts.
 
@@ -22,7 +22,7 @@ Each time someone *reviews* a fact, he or she may be given the following choices
 On each review, it is likely that the claims will be modified in some way:
 
 - Claimed amounts may change (if a fact that has been used to compute those amounts has been changed)
-- Claim scores may change (depending on the facts, some facts may directly or remotly influence claim scoring)
+- Claim scores may change (depending on the facts, some facts may directly or remotely influence claim scoring)
 - Some claims may be removed or added (if justice.cool has detected a change in the described situation, and the demander changes his/her claims).
 
 ?> Each time you review a fact, you will be able to join comments and/or documents to give some arguments to your opponent.
