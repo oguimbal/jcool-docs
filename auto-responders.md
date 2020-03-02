@@ -12,6 +12,15 @@ To use an auto-responder, just use the below autoresponder codes as company iden
 
 !> Auto-responders only exist on the **staging** environment, you cannot use them in prod.
 
+## AR-RANDOM *(Randomly negociates)* {docsify-ignore-all}
+
+This auto-responder will:
+
+- Randomly negociate facts
+- Randomly negociate claims
+
+?> Source can be found [here](https://gitlab.com/justice.cool/autoresponders/-/blob/master/src/auto-reponders/negociate-random.ts)
+
 ## AR-ACCEPT *(Accepts everything)* {docsify-ignore-all}
 
 This auto-responder will accept everything you say.

@@ -7,6 +7,7 @@
     - [Api Hooks & Notifications](/general/hooks.md)
     - [Upload documents](/general/documents.md)
     - [Internationalization](/general/i18n.md)
+- [**How to**](/how-to.md)
 - **Dev tools**
     - [Playground](playground.md)
     - [Known variables](known-variables.md)
