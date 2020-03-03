@@ -17,7 +17,7 @@
     - [Playground](playground.md)
     - [Known variables](known-variables.md)
     - [Companies](companies.md)
-    - [Auto reponders](/auto-responders.md)
+    - [Auto responders](/auto-responders.md)
     - [API Wrappers](wrappers.md)
 - [Terms of use](tos.md)
 <!-- - [API bindings](/) -->

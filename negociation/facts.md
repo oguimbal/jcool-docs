@@ -5,7 +5,7 @@
 
 ## How do I know that I should review a fact ?
 
-Justice.cool will tell you when you should review something using [API hooks](/general/hooks.md)
+Justice.cool will tell you when you should review something using [API hooks](/general/hooks.md).
 
 There are two cases when you are expected to review facts/claims:
 
@@ -61,10 +61,10 @@ If this query returns an empty array, then you are NOT expected to review any fa
 
 Once you have gathered all facts to be reviewed, you will have to give your point of view on all of those.
 
-For each fact, your point of view can be one of those things
+For each fact, your point of view can be one of those things:
 
 
-- **Accept** the fact, if you're happy with its current value.
+- **Accept** the fact, if you agree with its current value
 - **Give your version** of this fact *(+ an optional comment)*
 - **Reject** this fact, and ask a correction to your opponent *(with an optional comment)* **- see note below**
 
@@ -123,7 +123,7 @@ await dispute.pushFactCorrections([{
 ```
 
 
-?> **Note 1:** This query is an example - you will probably want turn the `facts` parameter as a query argument (like `disputeId`).
+?> **Note 1:** This query is an example - you will probably want to turn the `facts` parameter into a query argument (like `disputeId`).
 
 ?> **Note 2:** The comment associated to each review is optional. You can also join documents as URLs, or as references (see [Upload documents](/general/documents.md) section)
 
@@ -149,8 +149,8 @@ Once facts are reviewed, you're not finished !
 
 **If you have posted reviews**, you must check that there is no missing information (see previous section).
    You can check that on the `amendFacts()` mutation result. If there is some missing info, you have to either:
-- Ask a human to fill the given form (if you dont want to automate this).
-- Or provide the asked info via a call to `addMissingFact()` mutation (check the GraphQL schema documentation), which could **ALSO** ask for further information. Then repeat until no further information is asked.
+- Ask a human to fill the given form (if you do not want to automate this).
+- Or provide the missing information via a call to `addMissingFact()` mutation (check the GraphQL schema documentation), which could **ALSO** ask for further information. Then repeat until no further information is asked.
 
 
 Once this is done, you will have to [review claims](/negociation/claims.md)

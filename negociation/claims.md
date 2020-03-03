@@ -9,7 +9,7 @@
 
 You must review claims just after having reviewed facts, as described in [the previous tutorial](/negociation/facts.md).
 
-You can know which claims you are expected to review via a query like this one:
+You can retrieve which claims you are expected to review via a query like this one:
 
 
 ```playground
@@ -56,26 +56,26 @@ const claims = await dispute.getClaims({onlyWaitingMyReview: true});
 
 !> This query does not always return results !
 
-?> Of course, as always with GraphQL, you can tweak this query to get more or less data, depending on what you need. The above query demonstragtes how to use [GraphQL fragments](https://www.apollographql.com/docs/angular/features/fragments/), which are useful to avoid repeating yourself if you plan to select past propositions.
+?> Of course, as always with GraphQL, you can tweak this query to get more or less data, depending on what you need. The above query shows how to use [GraphQL fragments](https://www.apollographql.com/docs/angular/features/fragments/), which are useful to avoid repeating yourself if you plan to select past propositions.
 
-If this query returns an empty array, then you are NOT expected to review any claim. This could mean one of those three things:
+If this query returns an empty array, then you are NOT expected to review any claim. This could mean one of these three things:
 
-- It is not your turn to review claims (your hook may have been called after a long time, and someone has filled the corresponding `ping-pong` form meanwhile)
-- All facts have not yet been reviewed
+- It is not your turn to review claims (your hook may have been called after a long time, and someone has filled the corresponding `ping-pong` form meanwhile).
+- All facts have not yet been reviewed.
 - All claims have been reviewed, and your dispute is resolved.
 
 
 ## How do I review claims ?
 
 
-Once you have gathered all claims to be reviewed, you will have to tell your decision of view on all of those.
+Once you have retrieved all claims to be reviewed, you will have to give your decision for each claim.
 
 
-For each claim, your decision can be:
+Your decision can be:
 
 - **Accept**: Will consider your last opponent proposition as accepted.
-- **Counterpropose**: Will
-- **Reject** this fact, and ask a correction to your opponent *(with an optional comment)* **- see note below**
+- **Counterpropose**: Make another proposition for the claim (new amounnt or delay)  *(with an optional comment)*.
+- **Reject** the claim, this will ask your opponent to abandon the claim *(with an optional comment)*
 
 
 !> When you post an `Accept` decision on an `Abandon` proposition, it will tell justice.cool that you accept to abandon this claim !
@@ -166,7 +166,7 @@ await dispute.rejectClaims([{
 }])
 ```
 
-?> **Note 1:** This query is an example - you will probably want turn everyting into query arguments
+?> **Note 1:** This query is an example - you will probably want to turn everyting into query arguments
 
 ?> **Note 2:** The comment associated to each review is optional. You can also join documents as URLs, or as references (see [Upload documents](/general/documents.md) section)
 
@@ -174,7 +174,7 @@ await dispute.rejectClaims([{
 
 
 - If you accepted everything, then your dispute is resolved !
-- If you posted some counter propositions or abandon propositions, then your opponent will be notified: It is now his/her turn to review your propositions.
+- If you posted some counter-propositions or abandon-propositions, then your opponent will be notified: it is now his turn to review your propositions.
 
 
 ## What should I do once I reviewed claims ?
@@ -184,4 +184,4 @@ Once you reviewed all claims, you are not expected to do anything.
 
 If your opponent reviews your propositions, this process will run again (you will be called via `mediationNegociation` hook once your opponent has reviewed your decisions)
 
-If your mediation has succeded or failed, the corresponding [hooks](/general/hooks.md) will be called later, when Justice.cool has ensured that both parties have fullfilled their obligations (payment, etc...).
+If your mediation has succeded or failed, the corresponding [hooks](/general/hooks.md) will be called later, when Justice.cool has ensured that both parties have fulfilled their obligations (payment, etc...).

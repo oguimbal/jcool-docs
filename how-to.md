@@ -1,6 +1,6 @@
 # What is this section ?
 
-It contains some tips & tricks to test justice.cool
+It contains some tips & tricks to test justice.cool.
 
 # Create a mediation against yourself
 
@@ -20,11 +20,11 @@ then it is likely that you will have to create new mediations against yourself.
 
 You can fill [the demander initial form](https://app.staging.justice.cool/form?reset=true).
 
-One problem, though: The opponent you will chose will not be notified, and nobody will answer you.
+One problem, though: the opponent you choose will not be notified, and nobody will answer you.
 
 To fix this, you can use an [autoresponder](/auto-responders.md) as your opponent.
 
-For instance, when filing a test aerial litigation, you would have to chose an autoresponder as opponent airline:
+For instance, when filling a test aerial litigation, you would have to choose an autoresponder as opponent airline:
 
 
 ![logo](_media/ar-company.png)
