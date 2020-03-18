@@ -2,6 +2,27 @@
 
 It contains some tips & tricks to test justice.cool.
 
+
+# Test the whole process manually
+
+If you want to test the whole justice.cool experience manually, both from your perspective and from the one of your opponent, this section is for you.
+
+### Bypass payments
+
+On our test environment, you can use test credit cards such as **4242 4242 4242 4242** to bypass payments.
+
+### Connect as my opponent
+
+In production, you will of course never be able to access your opponent forms.
+
+In our development environment, however, you will be able to see when your opponent has a form to fill in the "Developer" section of your dispute:
+
+![go to form](_media/gotoform.png)
+
+Thus, you will be able to connect as if you were your opponent (use a private navigation section, or another browser in order to connect with another account).
+
+
+
 # Create a mediation against yourself
 
 If you are a defender company, and you would like to test your implementation of the `new mediation` hook,
