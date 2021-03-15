@@ -173,6 +173,34 @@ When someone wrote a message to a dispute (either by mail or via the user area),
 
 !> Be aware of the fact `sender` and `original` properties might be null (respectively if message received from an unknown sender, and if your opponent wrote in your prefered language)
 
+
+## Rejected invitation
+
+This is the `invitationRejection` hook.
+
+It is triggered when someone rejects an invitation to join a lawsuit or a dispute.
+
+```typescript
+{
+  "reject": {
+    "id": "xyz", // sender participant ID (unique in the given dispute)
+    "role": "defender", // role of the participant (demander, defender, demanderLawyer, ...)
+    "name": "Name of the participant"
+  },
+  // An OPTIONAL message, that might have been provided when rejecting the invitation.
+  "message": {
+      "html": "<b>a message</b>", // Clean HTML message (safe for display, does not contain any CSS nor js scripts)
+      "text": "a message",
+      // an OPTIONAL property telling which was the original message (if was not in your prefered language)
+      "original": {
+        "html": "<b>un message</b>",
+        "text": "un message",
+        "language": "fr"
+      }
+  }
+}
+```
+
 ## Mediation success
 
 This is the `mediationSuccess` hook.
