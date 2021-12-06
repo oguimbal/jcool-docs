@@ -3,9 +3,9 @@
 
 # Justice.cool API <small>1.0</small>
 
-> Contact your opponents, make your mediations easier.
+> Contact your opponents, make access to Justice easier.
 
-- A modern API to facilitate your disputes resolution via [Justice.cool](https://justice.cool)
+- A modern API to facilitate disputes resolution via [Justice.cool](https://justice.cool)
 
 [Get Started](/?id=justicecool)
 <!--
