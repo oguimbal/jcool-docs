@@ -1,13 +1,13 @@
 # Negociating claims
 
-?> Please read [introduction](/negociation/intro.md) first
+?> Please read [introduction](/demander/negociation/intro.md) first
 
-!> This part describes actions that require you to already have [reviewed facts](/negociation/facts.md).
+!> This part describes actions that require you to already have [reviewed facts](/demander/negociation/facts.md).
 
 
 ## How do I know that I should review a claim ?
 
-You must review claims just after having reviewed facts, as described in [the previous tutorial](/negociation/facts.md).
+You must review claims just after having reviewed facts, as described in [the previous tutorial](/demander/negociation/facts.md).
 
 You can retrieve which claims you are expected to review via a query like this one:
 

@@ -348,6 +348,23 @@ These claims have been modelized by our jurists and our data scientists and for 
 
 # Determine the opponent
 
+You may have noticed in the example above that you have to fill the `opponent` variable.
+
+### If the opponent is a company
+
+You can specifiy this company using :
+- the SIRET identifier : in the format `'siret:0123456789'`
+- the id from our company database. To simplify opponent designation and to enrich the database with companies that are not registered in France, we store a list of brands in our database (for instance, airline companies, travel agencies etc).
+You can search for these companies in the [Companies](/dev-tools/companies) section.
+
+If you want to provide the contact means for the opponent, you can specify them in the `contactMeans` variable.
+In addition, you can also force the contact means to `auto: true` to use the contact means defined in justice.cool database.
+
+### If the opponent is an individual
+
+You have to provide various information (first name, last name) as well as contact means (email, postal address, phone)
+
+
 
 # Best practices and useful info
 
