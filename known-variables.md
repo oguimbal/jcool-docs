@@ -1,6 +1,6 @@
 # Variables  {docsify-ignore-all}
 
-Variables are all the facts that could be useful to justice.cool during mediation
+Variables are all the facts that could be useful for a file on justice.cool
 
 <vue>
     <template>

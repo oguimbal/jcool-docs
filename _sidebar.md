@@ -1,14 +1,17 @@
 - [**Introduction**](/#what-is-justicecool)
 - [**Quickstart**](quickstart.md)
+- [**Mediation service**](/mediation/)
 - [**[Tutorial] Demander companies**](/demander/)
-  - [Push a new dispute](/demander/push.md)
-
-- **[Tutorial] Negociation**
-  - [Introduction](/negociation/intro.md)
-  - [Negociate facts](/negociation/facts.md)
-  - [Negociate claims](/negociation/claims.md)
+  - [Push a new file](/demander/push.md)
+  - [Push a new mediation](/demander/push-mediation.md)
+  - [Negociate through mediation](/demander/negociation/intro.md)
+    - [Negociate facts](/demander/negociation/facts.md)
+    - [Negociate claims](/demander/negociation/claims.md)
+  - [Invite parties](/demander/invite.md)
+- [**[Tutorial] Opponent companies**](/opponent/)
   <!-- - [Explanation: What will be the experience of my opponent ?](/demander/opponent-experience.md) -->
 - [**General resources**](/general/)
+    - [GraphQL](/general/graphql.md)
     - [Api Hooks & Notifications](/general/hooks.md)
     - [Upload documents](/general/documents.md)
     - [Internationalization](/general/i18n.md)

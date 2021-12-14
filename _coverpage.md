@@ -7,7 +7,7 @@
 
 - A modern API to facilitate disputes resolution via [Justice.cool](https://justice.cool)
 
-[Get Started](/?id=justicecool)
+[Get Started](/?id=introduction)
 <!--
 [GitHub](https://github.com/docsifyjs/docsify/)
 [Get Started](#docsify) -->

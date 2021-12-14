@@ -171,3 +171,10 @@ input.search-bar:focus :-ms-placeholder {
 }
 
 </style>
+
+## Airline companies
+
+Airline companies are all stored in our database with the format : `'known:airline/icao'`  with icao being the ICAO airline designator, assigned by the International Civil Aviation Organization (ICAO) to operating airlines. Each icao code is unique and is a three-letter string.
+
+*Example:* : `'known:airline/afr'` for Air France.
+

@@ -1,6 +1,6 @@
 # Quickstart
 
-Justice.cool API is requestable through a GraphQL endpoint, which you can request **from your server**
+Justice.cool API is requestable through a [GraphQL](/general/graphql.md) endpoint, which you can request **from your server**
 
 
 
@@ -8,7 +8,11 @@ Justice.cool API is requestable through a GraphQL endpoint, which you can reques
 
 # Creating an API key
 
-You can create a [production api key here](https://app.justice.cool/account). API keys are necesary to request our public API from your servers.
+API keys are necesary to request our public API from your servers.
+
+You can find below how to create a dev or a production api key.
+For both dev and production keys, you will need a justice.cool account to do so.
+You must fill in the registration form with your company information.
 
 The key must be passed as a header with every GraphQL request you will issue to us:
 

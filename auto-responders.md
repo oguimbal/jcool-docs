@@ -1,5 +1,6 @@
+# Auto-responders
 
-Auto-responders are fictive opponents that you can use to test Justice.cool API.
+Auto-responders are fictive opponents that you can use to **test Justice.cool mediation service through the API.**
 
 When setting an auto-responder as your opponent, it will automatically interact with you using a predefined behaviour (which depends on the autoresponder you chose).
 
