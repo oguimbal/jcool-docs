@@ -11,7 +11,7 @@ API hooks can be configured from your user interface, at [app.justice.cool/dev](
 You will be asked for an action to be performed for each type of event that can occur. For each event, you have 3 options:
 
 - `Off` : Your API will not be notified, but it is very likely that you will receive an email instead to notify you.
-- `Hook` : Justice.cool will perform an `HTTP POST` request to the given URL each time there is a new event (see [POST strategy](#Post-strategy) section below)
+- `POST` : Justice.cool will perform an `HTTP POST` request to the given URL each time there is a new event (see [POST strategy](#Post-strategy) section below)
 - `Polling` : You will fetch new events regularly via our API (see [Polling strategy](#Polling-strategy) section below)
 
 !> _IMPORTANT_ It should never be the case, but always assume that you could receive a hook message multiple times. Thus, to avoid unexpected side-effects, we strongly recommend you to implement an [idempotent](https://stackoverflow.com/questions/1077412/what-is-an-idempotent-operation) hook processing. Tip: Each hook event has an unique ID which you can use to filter out events that you already have processed.
@@ -39,8 +39,6 @@ See [section below](#which-data-will-i-get-) for details about hook-specific dat
 
 Justice.cool will consider the hook as processed once your server replied with a success HTTP status code.
 
-?> localhost testing 👉 You might also want to use the "test hook" tool that is available in the developer section mentioned above to get a CURL statement with test data allowing you to trigger your hook manually when testing localy.
-
 ?> In case your server failed to respond to a hook, Justice.cool will retry to call it after 3min, 10min, 50min, 3h and then 10h. It will be retried no further afterwards.
 
 ?> If your server experienced a long shutdown, you might want to explicitely poll hooks each time your server starts in order to catchup hooks that you may have missed (refer to the [Polling strategy](#Polling-strategy) section below)
@@ -61,6 +59,8 @@ The processing of an event then occurs in two phases:
 You can get hooks waiting to be processed using something like the following request
 
 ```playground
+==> fullpage
+==> schema
 ==> gql
 mutation GetHooks {
   hooks {
@@ -93,6 +93,8 @@ mutation GetHooks {
 Once you have processed some hooks that you fetched using polling strategy, you must tell Justice.cool that you have processed them using the `markProcessed` mutation.
 
 ```playground
+==> fullpage
+==> schema
 ==> variable ids
 []
 ==> gql
@@ -113,15 +115,15 @@ In either case (polling or POST strategy), you might get a hook data with each e
 
 Most of the event will not have any associated data (meaning that you will be responsible for collecting the data you need to process the hook from our API).
 
-Here is the list of specific events that are providing data on hook.
+Here is a list of some specific events that are providing data on hook.
 
-This list is not exhaustive: You will find an exhaustive list of the available hooks directly in the developper section mentioned above.
+**This list is not exhaustive** : you will find an exhaustive list of the available hooks directly in [the developper section](https://app.staging.justice.cool/fr/dev/api) of your user area.
 
 ## Invitation to a new mediation
 
 This is the `newDispute` hook.
 
-When someone invites you to a new mediation, this hook will be called with a link to the invitation from
+When someone invites you to a new mediation, this hook will be called, providing a link to the invitation from
 
 ```json
 {
@@ -189,7 +191,7 @@ It is triggered when someone rejects an invitation to join a lawsuit or a disput
 
 This is the `mediationSuccess` hook.
 
-When a mediation succeeds, this hook will be called with data that contains a link which enables you to download the contract that you and your opponent have signed.
+When a mediation succeeds, this hook will be called and will provide data including a link to download the contract that you and your opponent have signed during the mediation.
 
 ```json
 {
@@ -203,7 +205,7 @@ When a mediation succeeds, this hook will be called with data that contains a li
 
 This is the `mediationFailure` hook.
 
-When a mediation fails, this hook will be called with data that contains a link which enables you to download the proof of mediation failure that can be used in front of a judge.
+When a mediation fails, this hook will be called and will provide data including a link which enables you to download the proof of mediation failure that can later be used in front of a judge.
 
 ```json
 {
@@ -212,3 +214,13 @@ When a mediation fails, this hook will be called with data that contains a link 
 ```
 
 !> This link will only be valid for 24h after the hook has been enqueued in our systems. Be sure to download it before that (however, the document will be downloadable via your user space or via our API afterwards).
+
+# How to test ?
+
+In the staging environmenent, for each hook there is a big blue button "Test this hook".
+When clicking this button, you will be asked to provide a dispute id (or lawsuit id) from your staging environment.
+
+You can then either :
+- trigger the hook directly (best to test the polling strategy).
+- get a CURL statement with test data allowing you to trigger your hook manually when testing locally (best to test the post strategy)
+

@@ -4,24 +4,24 @@ When you and your opponent are involved in a mediation, you will have to interac
 
 When using Justice.cool *manually*, this interaction is performed using several forms that each party will have to fill on a per-turn basis.
 
-As these forms are quite the same if you are a demander or a defender, and given that you have to fill them in turn, we nicknamed them `ping-pong` forms.
+As these forms are quite the same if you are a demander or an opponent, and given that you have to fill them in turn, we nicknamed them `ping-pong` forms.
 
 These forms are split into two different parts.
 
 ## Facts
 
-First, both parties will have to agree on the facts involved in this dispute.
+First, both parties will have to agree on the facts involved in the dispute.
 They will have to review and negociate them in turn, until they find an agreement on what the facts are.
 
 Each time someone *reviews* a fact, he may be given the following choices:
 
-- **Give a new version**: if the current fact value does not seem OK, and the person wants to give his point of view.
+- **Give a new version**: if the current fact value does not seem OK, and he wants to give his point of view.
 - **Ask for a correction**: if the current value is wrong. This will ask the opponent to correct this fact.
 
 
 On each review, it is likely that the claims will be modified in some way:
 
-- Claimed amounts may change (if a fact that has been used to compute those amounts has been changed)
+- Claim amounts may change (if a fact that has been used to compute the amounts has been changed)
 - Claim scores may change (depending on the facts, some facts may directly or remotely influence claim scoring)
 - Some claims may be removed or added (if justice.cool has detected a change in the described situation, and the demander changes his/her claims).
 
@@ -29,7 +29,7 @@ On each review, it is likely that the claims will be modified in some way:
 
 ## Claims
 
-Once both parties have settled on an accepted version of facts, they will have to agree on the claims formulated by the demander.
+Once both parties have settled on the same version of facts, they will have to agree on the claims formulated by the demander.
 
 The process is similar to what happened with facts negociation: each party will have to tell what seems reasonable, until an agreement is found.
 

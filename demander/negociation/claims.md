@@ -14,6 +14,8 @@ You can retrieve which claims you are expected to review via a query like this o
 
 ```playground
 ==> height tall
+==> fullpage
+==> schema
 ==> variable disputeId
 "CFR-XXXXXXX-XXX"
 
@@ -83,6 +85,8 @@ Your decision can be:
 
 ```playground
 ==> height tall
+==> fullpage
+==> schema
 ==> gql
 mutation {
   dispute(id: "CFR-XXXXXXXX") {

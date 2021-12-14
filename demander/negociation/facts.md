@@ -17,6 +17,8 @@ When those hooks are called, you are expected to retreive facts to be reviewed, 
 
 ```playground
 ==> height medium
+==> fullpage
+==> schema
 ==> variable disputeId
 "CFR-XXXXXXX-XXX"
 
@@ -76,6 +78,8 @@ Once your point of view has been settled, you will have to post it to Justice.co
 
 ```playground
 ==> height medium
+==> fullpage
+==> schema
 ==> variable disputeId
 "CFR-XXXXXXX-XXX"
 

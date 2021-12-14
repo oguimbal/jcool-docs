@@ -1,24 +1,31 @@
 
-# Push a new file
+# Push a new dispute to mediation
 
-You can use the API to push some files you want to handle on the platform. In justice.cool vocabulary, a file is a dispute. You will have access in your personal area to the disputes you have sent through the API. All the parties invited on the dispute will have access too. Parties will be able to do different actions on the file depending on their role.
+This section is very similar to the section [Push a new file](/demander/push.md) but contains some information specific about mediation.
+
+!> You must read [usual lifecycle of a dispute](/mediation/README.md#usual-lifecycle-of-a-dispute) to understand this section
+
+To start a mediation with your opponnent, you have to push some information about your litigation to justice.cool. A new record, called a **dispute**, will then be created in Justice.cool platform.
 
 When creating the dispute, you will be able to choose among optional services to ease the process :
 
-- **Claim computation & Scoring**: this option leverages justice.cool modelization and machine learning algorithms to compute the claims of the file.
-- **Onboarding**: in case of opt-in for claim computation & scoring, if some information is missing in what you have sent for the model, you can instruct us to create a form to fill-in this information manually. If you do not opt-in for this feature, then the dispute creation will fail in case of missing information.
+- **Claim computation & Scoring**: this option leverages justice.cool modelization and machine learning algorithms to compute the claims you are entitled to.
+- **Onboarding**: in case of opt-in for claim computation & scoring and that some information is missing for the model given what you sent us, you can instruct us to create a form to fill-in this information manually. If you do not opt-in for this feature, then the dispute creation will fail.
+- **Contact**: you can choose if you want us to contact the opponent for you (or you will have to contact them yourself - IMPORTANT : see the [terms of use](/tos.md) of our API for this case)
 
+!> When pushing a new mediation using the API, we will not perform the "File checking" step described in [usual lifecycle of a dispute](/#usual-lifecycle-of-a-dispute) : justice.cool cannot be held responsible for the non validity of the documents you send us.
 
+?> The later steps described in [usual lifecycle of a dispute](/#usual-lifecycle-of-a-dispute) are not (yet) in the scope of our public API: Disputes created though this API will be considered as completed once mediation ends (see "end" hook)
 
 # Show me some code
 
-Here is the graphql mutation to push a new dispute to justice.cool.
+Here is the GraphQL mutation to push a new mediation to justice.cool.
 
 You can find all the variables description (except for the facts) in the tabs **Docs** and **Schema** in each GraphQL playground on the right side.
 
 The facts are listed in the tab "Query variables."
 
-?> Don't be afraid to run the code below, it will create a dispute on the **staging** environment, which is free, and which does not contact anybody in real life.
+?> Don't be afraid to run the code below, it will create a dispute on the **staging** environment, which is free, and which does not contact your opponent in real life.
 
 ```playground
 ==> height very-tall
@@ -214,7 +221,7 @@ The id returned in the response is in the form "CFR-YYYYMMDD-xxxx" where YYYYMMD
 
 If some information is missing, the dispute **will** be created (thus, you will have an ID), in a dormant state. But you will also be given the *form* property, which contains a link to a form that must be filled to complete the dispute.
 
-*Example:* When using `'onboarding'` feature, you could also get in the answer above something like this:
+*Example:* When using `'onboarding'` feature, could also get in the answer above something like this:
 
 ```json
 [...]
@@ -240,24 +247,30 @@ If you want to leverage justice.cool modelisation, you should provide justice.co
 A complete list of our existing variables [can be found here](/known-variables.md).
 To know which variables you should send for a specific litigation, contact us.
 
+
+Variables are facts that will be discussed one by one during the mediation process with the opponent. As such, the "variables" you provide here are only *your version* of the facts, which the opponent will be able to challenge.
+
 ?> Each fact has its own type. Check the [existing variables](/known-variables.md) for details.
 
 ?> `Document` are variables which are a bit special, check the [Upload documents](/general/documents.md) section to learn how to upload them.
 
 # "Claims" and when to provide them
 
-Claims are the demands of the dispute. Claims are either calculated by justice.cool system based on the facts provided, or given manually.
+Claims are the demands you are asking to your opponent. Claims are either calculated by justice.cool system based on the facts provided, or given manually.
 
 Claims can be of two types:
 - monetary: the demand is a compensation, with a specified amount
-- service: the demand is the execution of a service / reparation, with a specified delay to be executed
+- service: the demand is the execution of a service / reparation, within a specified deadline.
 
 
-[**Optional**]You can manually specify claims for each demander. Doing so, you can enforce justice.cool to take claims into account that might not have been created automatically (when updateMode: auto).
+Once all facts have been discussed and negociated between you and your opponent, you will have to discuss the claims (the amount or the delay), and negociate them in order to find an amicable solution.
 
-To better understand how claims are created, you have to understand 3 parameters:
 
-- When creating the dispute, you specify a global parameter `updateMode`: It defines how "automatic" claims are created and deleted.
+You can **optionnaly** manually specify claims for each demander. Doing so, you can enforce justice.cool to take claims into account that might not have been created automatically (when updateMode: auto).
+
+To better understand how claims are created and later updated during mediation, you have to understand 3 parameters:
+
+- When creating the dispute, you specify a global parameter `updateMode`: It defines how "automatic" claims are created and deleted during the mediation.
 - Additionaly, you can provide two options on each claim you create manually:
     * `eligibilityMode`: It overrides the global `updateMode` for the given claim, thus defining if justice.cool is in charge of creating/deleting this claim when needed.
     * `compensationMode`: It tells justice.cool how the amount of this claim must be computed.
@@ -274,8 +287,8 @@ This mechanism gives you a wide range of options to handle your claims, from com
 ## Completely custom claims
 
 
-You can create completely custom claims, which justification will be opaque to justice.cool (thus also possibly opaque to the opponent).
-This might be usefull for one-time or very specific litigations types which you know very well about, or that are not well handled by justice.cool in your opinion (do not hesitate to tell us more about them so we can improve justice.cool !).
+You can create completely custom claims, which justification will be opaque to justice.cool (thus also possibly opaque to your opponent).
+This might be usefull for one-time or very specific litigations types which you know very well about, or that are not well handled by justice.cool in your opinion (by the way, do not hesitate to tell us more about them so we can improve justice.cool !).
 
 On another hand, such claims will not be scored, nor updated automatically by justice.cool.
 
@@ -284,6 +297,8 @@ For instance, the request below creates a new dispute with only two custom claim
 
 ```playground
 ==> height tall
+==> fullpage
+==> schema
 ==> variable opponent
 {
     company: { identifier: 'siret:80314744600022' },
@@ -339,14 +354,33 @@ mutation CreateDispute($opponent: OpponentInput!) {
 
 ```
 
-!> It might not be a good idea to push this kind of raw custom claims without variables : you should also push variables, which represent facts that will qualify the dispute. This will be useful to discuss with the opponent, to generate documents easily ...
+!> It might not be a good idea to push this kind of raw custom claims without variables: you should also push variables, which represent facts that will be discussed between you and your opponent. Without those, you have little material to discuss/negociate on in order to help you find an amicable solution.
+
 ## Claims scored by justice.cool, with custom amount
 
 If you want your claims to be "scored" by justice.cool, you **must** provide on your custom claims a "typeId" that matches a [justice.cool type of claim](/known-variables.md#claim-types).
 
 These claims have been modelized by our jurists and our data scientists and for which an indicative score can be provided, based on the word of law, and on machine learning algorithms that will analyze past decisions of cases similar to yours.
 
+?> Scores are updated each time you negociate a fact with your opponent during the mediation process. It is an indicative score which relies on our jurists understanding of your dispute, and on machine learning algorithms.
+
 # Determine the opponent
+
+You may have noticed in the example above that you have to fill the `opponent` variable.
+
+### If the opponent is a company
+
+You can specifiy this company using :
+- the SIRET identifier : in the format `'siret:0123456789'`
+- the id from our company database. To simplify opponent designation and to enrich the database with companies that are not registered in France, we store a list of brands in our database (for instance, airline companies, travel agencies etc).
+You can search for these companies in the [Companies](/dev-tools/companies) section.
+
+If you want to provide the contact means for the opponent, you can specify them in the `contactMeans` variable.
+In addition, you can also force the contact means to `auto: true` to use the contact means defined in justice.cool database.
+
+### If the opponent is an individual
+
+You have to provide various information (first name, last name) as well as contact means (email, postal address, phone)
 
 
 # Best practices and useful info
@@ -371,6 +405,6 @@ In short, you should not assume to always perfectly know which data to send.
 
 You could surely see this to be hard constraint, but leveraging justice.cool modelization can bring you and your opponent:
 
-- A well formated and complete file which does not miss any piece of information.
+- A justice.cool score which helps both parties to evaluate the situation.
 - Logical explanations telling how the claim amounts have been computed, and why you are entitled to them.
-- [In some cases] A justice.cool score which helps both parties to evaluate the situation.
+- A well formated and complete file which does not miss any piece of information.
