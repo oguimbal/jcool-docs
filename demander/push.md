@@ -7,6 +7,7 @@ When creating the dispute, you will be able to choose among optional services to
 
 - **Claim computation & Scoring**: this option leverages justice.cool modelization and machine learning algorithms to compute the claims of the file.
 - **Onboarding**: in case of opt-in for claim computation & scoring, if some information is missing in what you have sent for the model, you can instruct us to create a form to fill-in this information manually. If you do not opt-in for this feature, then the dispute creation will fail in case of missing information.
+- **Lawyer**: if necessary, you can invite a lawyer on a dispute directly at the same time as its creation. You will need to provide the justice.cool identifier of the lawyer and the fee agreement signed.
 
 
 
@@ -115,8 +116,19 @@ The facts are listed in the tab "Query variables."
 mutation CreateDispute($facts: [FactDataInput!]) {
   createDispute(
     data: {
-      # tells justice.cool which options to use
+     # which options to use
       features: [letMeCheckBeforeSending]
+      # which sequence to start with for this dispute
+      startAt: demanderLawyerOnboarding
+      # if there is a lawyer to invite on the dispute
+      lawyer: {
+          # the identifier of the lawyer to onboard (identifier chosen by the lawyer)
+          id: "jcooltests",
+          # the fee agreement signed by the demander (see Upload documents)
+          lawyerFeeAgreement: "temp:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+          # notes for the lawyer...include hashtags to help
+          notes: "Dossier de #Source",
+        }
       # how claims will be created/deleted
       updateMode: auto
       # how contracts will be signed
@@ -153,7 +165,7 @@ mutation CreateDispute($facts: [FactDataInput!]) {
 
 ==> wrapper Typescript
 await api.createDispute({
-      // tells justice.cool which options to use
+      // which options to use
       features: [JCoolFeature.LetMeCheckBeforeSending]
       // how claims will be created/deleted
       updateMode: UpdateMode.Auto
@@ -299,7 +311,7 @@ mutation CreateDispute($opponent: OpponentInput!) {
       signatureMode: auto
       variables: []
       opponent: $opponent
-      # tells justice.cool to only take manual claims into account
+      # to only take manual claims into account
       updateMode: manual
       # Who is the demander of this dispute ?
       demanders: [

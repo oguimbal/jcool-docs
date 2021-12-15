@@ -122,21 +122,23 @@ The facts are listed in the tab "Query variables."
 mutation CreateDispute($facts: [FactDataInput!]) {
   createDispute(
     data: {
-      # tells justice.cool which options to use
+      # which options to use
       features: [letMeCheckBeforeSending]
+      # which sequence to start with for this dispute, here mediation
+      startAt: mediation
       # how claims will be created/deleted
       updateMode: auto
       # how contracts will be signed
       signatureMode: auto
       # an arbitrary external ID that might be useful to you
       externalId: "my id"
-      # Data describing the litigation. See "Query variables" tab below
+      # data describing the litigation. See "Query variables" tab below
       facts: $facts
-      # Who is the demander of this dispute ?
-      # If you specify either "person" or company", then this means that your company has been mandated for their representation.
+      # who is the demander of this dispute ?
+      # if you specify either "person" or company", then this means that your company has been mandated for their representation.
       # ... if your company is the demander, then leave this blank.
       demanders: [{ person: { firstName: "Perh", lastName: "Sohn" } }]
-      # Who is the opponent in this dispute ?
+      # who is the opponent in this dispute ?
       opponent: {
         # opponent is a company: must be identified using SIREN, or an ID know via https://docs.justice.cool/#/companies
         company: { identifier: "siret:80314744600022" }
@@ -160,8 +162,10 @@ mutation CreateDispute($facts: [FactDataInput!]) {
 
 ==> wrapper Typescript
 await api.createDispute({
-      // tells justice.cool which options to use
+      // which options to use
       features: [JCoolFeature.LetMeCheckBeforeSending]
+      // which sequence to start with for this dispute, here mediation
+      startAt: JcoolEntry.Mediation
       // how claims will be created/deleted
       updateMode: UpdateMode.Auto
       // how contracts will be signed
@@ -311,15 +315,16 @@ mutation CreateDispute($opponent: OpponentInput!) {
     data: {
       # see above for those
       features: [letMeCheckBeforeSending]
+      startAt: mediation
       signatureMode: auto
       variables: []
       opponent: $opponent
-      # tells justice.cool to only take manual claims into account
+      # to only take manual claims into account
       updateMode: manual
-      # Who is the demander of this dispute ?
+      # who is the demander of this dispute
       demanders: [
         {
-          # In this case, this means that the demander is a person that has mandated your company for this dispute.
+          # in this case, this means that the demander is a person that has mandated your company for this dispute.
           # ... if your company is the demander, then leave this blank.
           person: { firstName: "Perh", lastName: "Sohn" }
           # Claims for this demander

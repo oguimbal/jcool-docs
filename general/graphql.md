@@ -9,12 +9,12 @@ GraphQL (for "Graph Query Language") was developed by Facebook to address the la
 
 Typically, a GraphQL API consists of a single HTTP address (for our staging API, this is https://api.staging.justice.cool/v1) that responds to POST requests.
 
-In order to simplify development, navigating to the API address with a browser (i.e. making a GET request) displays a request editor : [the "playground"](/playground.md).
+?>In order to simplify development, navigating to the API address with a browser (i.e. making a GET request) displays a request editor : [**the "playground"**](/playground.md).
 
 The text of the requests you create (in [the playground](/playground.md), for example) will have to be put in the body of the POST requests you will make to the api, which will then answer you in a JSON format that "looks" like the format defined in your request.
 
 
-!> The HTTP headers should be specified in a tab, next to "Query Variables". You will have to specify your API key in the form {"Authorization": "Bearer YOUR API KEY"} in order to authenticate yourself to our api (and the same header should be specified in your POST requests).
+!> The HTTP headers should be specified in a tab, next to "Query Variables". You will have to specify your API key in the form `{"Authorization": "Bearer YOUR API KEY"}` in order to authenticate yourself to our api (and the same header should be specified in your POST requests).
 
 !> **This is optional (you can stay with POST and pure JSON documents)**, but depending on the technology you are using, it is likely that tools are available to automatically generate the types corresponding to the requests you will create. For example https://www.graphql-code-generator.com/ supports a number of technologies.
 
@@ -27,7 +27,7 @@ Both are relatively similar. The only difference is that a **query will never in
 
 Conversely, **mutations are designed to act on data**.
 
-We differentiate a query from a mutation with the prefix of the edited text
+We differentiate a query from a mutation with the prefix of the edited text.
 
 Example of a query:
 ```graphql
@@ -63,4 +63,4 @@ And then it will be expected that you post to the API something in the form:
 }
 ```
 
-NB: "SomeName" is used by some libraries that do intelligent caching. If you don't use it, you can put anything, like an explicit name.
+?>NB: "SomeName" is used by some libraries that do intelligent caching. If you don't use it, you can put anything, like an explicit name.
