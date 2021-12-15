@@ -14,7 +14,7 @@ In the same way, you can configure any other hook (EX: a message has been receiv
 
 The negociation sequence inside the mediation process works exactly the same way for demanders and opponents.
 
-You can find more information on negociation in the [demander companies tutorial](/demander/negociation/intro.md).
+You can find more information on negociation in the [mediation tutorial](/mediation/negociation/intro.md).
 
 
 

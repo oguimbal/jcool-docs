@@ -1,5 +1,5 @@
 
-# Push a new dispute to mediation
+# Push a new mediation
 
 This section is very similar to the section [Push a new file](/demander/push.md) but contains some information specific about mediation.
 
@@ -13,9 +13,9 @@ When creating the dispute, you will be able to choose among optional services to
 - **Onboarding**: in case of opt-in for claim computation & scoring and that some information is missing for the model given what you sent us, you can instruct us to create a form to fill-in this information manually. If you do not opt-in for this feature, then the dispute creation will fail.
 - **Contact**: you can choose if you want us to contact the opponent for you (or you will have to contact them yourself - IMPORTANT : see the [terms of use](/tos.md) of our API for this case)
 
-!> When pushing a new mediation using the API, we will not perform the "File checking" step described in [usual lifecycle of a dispute](/#usual-lifecycle-of-a-dispute) : justice.cool cannot be held responsible for the non validity of the documents you send us.
+!> When pushing a new mediation using the API, we will not perform the "File checking" step described in [usual lifecycle of a dispute](/mediation/README.md#usual-lifecycle-of-a-dispute) : justice.cool cannot be held responsible for the non validity of the documents you send us.
 
-?> The later steps described in [usual lifecycle of a dispute](/#usual-lifecycle-of-a-dispute) are not (yet) in the scope of our public API: Disputes created though this API will be considered as completed once mediation ends (see "end" hook)
+?> The later steps described in [usual lifecycle of a dispute](/mediation/README.md#usual-lifecycle-of-a-dispute) are not (yet) in the scope of our public API: Disputes created though this API will be considered as completed once mediation ends (see "end" hook)
 
 # Show me some code
 
@@ -122,8 +122,8 @@ The facts are listed in the tab "Query variables."
 mutation CreateDispute($facts: [FactDataInput!]) {
   createDispute(
     data: {
-      # tells justice.cool to create a form if some info is missing
-      features: [onboarding]
+      # tells justice.cool which options to use
+      features: [letMeCheckBeforeSending]
       # how claims will be created/deleted
       updateMode: auto
       # how contracts will be signed
@@ -155,15 +155,13 @@ mutation CreateDispute($facts: [FactDataInput!]) {
     details {
       link
     }
-    # == if some info is missing, this form must be filled
-    form
   }
 }
 
 ==> wrapper Typescript
 await api.createDispute({
-      // tells justice.cool to create a form if some info is missing
-      features: [JCoolFeature.Onboarding]
+      // tells justice.cool which options to use
+      features: [JCoolFeature.LetMeCheckBeforeSending]
       // how claims will be created/deleted
       updateMode: UpdateMode.Auto
       // how contracts will be signed
@@ -217,16 +215,16 @@ If you execute this:
 
 The id returned in the response is in the form "CFR-YYYYMMDD-xxxx" where YYYYMMDD is the actual date and xxxx is a 4-character string.
 
-**Note when** `updateMode: auto`
+<!-- **Note when** `updateMode: auto`
 
 If some information is missing, the dispute **will** be created (thus, you will have an ID), in a dormant state. But you will also be given the *form* property, which contains a link to a form that must be filled to complete the dispute.
 
-*Example:* When using `'onboarding'` feature, could also get in the answer above something like this:
+*Example:* When using `'onboarding'` feature, you could also get in the query answer a link like this :
 
 ```json
 [...]
 "form": "https://app.staging.justice.cool/form/01DFKD490BADBC4FS95SH5RA16"
-```
+``` -->
 
 
 ?> Please head to [the playground](/playground.md) to inspect detailed schema information and documentation.
@@ -279,7 +277,7 @@ In each case, setting a parameter to "manual" means that **justice.cool will not
 
 ?> If you use `updateMode: manual`, then you **must** specify claims manually.
 
-?> If you dot not provide any specific claim, then justice.cool will automatically compute them based on the "variables" you provided (`updateMode` mode is not "manual").
+?> When `updateMode` mode is not "manual", if you dot not provide any specific claim, then justice.cool will automatically compute them based on the "variables" you provided.
 
 This mechanism gives you a wide range of options to handle your claims, from completely automatic to completely manual. We will review below a couple of common use cases.
 
@@ -312,7 +310,7 @@ mutation CreateDispute($opponent: OpponentInput!) {
   createDispute(
     data: {
       # see above for those
-      features: [onboarding]
+      features: [letMeCheckBeforeSending]
       signatureMode: auto
       variables: []
       opponent: $opponent

@@ -1,6 +1,6 @@
 # Negociating facts
 
-?> Please read [introduction](/demander/negociation/intro.md) first
+?> Please read [introduction](/mediation/negociation/intro.md) first
 
 
 ## How do I know that I should review a fact ?
@@ -55,7 +55,7 @@ const facts = await dispute.getFacts({onlyWaitingMyReview: true});
 If this query returns an empty array, then you are NOT expected to review any fact. This could mean one of those two things:
 
 - It is not your turn to review facts (your hook may have been called after a long time, and someone has filled the corresponding `ping-pong` form meanwhile)
-- All facts have been reviewed: Your hook has been called in order to [Negociate claims](/demander/negociation/claims.md).
+- All facts have been reviewed: Your hook has been called in order to [Negociate claims](/mediation/negociation/claims.md).
 
 
 
@@ -157,4 +157,4 @@ Once facts are reviewed, you're not finished !
 - Or provide the missing information via a call to `addMissingFact()` mutation (check the GraphQL schema documentation), which could **ALSO** ask for further information. Then repeat until no further information is asked.
 
 
-Once this is done, you will have to [review claims](/demander/negociation/claims.md)
+Once this is done, you will have to [review claims](/mediation/negociation/claims.md)

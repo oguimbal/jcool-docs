@@ -22,14 +22,14 @@ Feel free to start hacking our api right away and to quick-read through this doc
 
 Justice.cool API is meant for multiple types of actors, to allow them to connect to our services:
 
-### Demander companies
+### [Demander companies](/demander/README.md)
 
 If you are a company often involved in conflicts with individuals or other companies, Justice.cool allows you to push new disputes directly from your IT systems or your CRM.
 
 The system is not invasive and lets you choose exactly which functionality you want to use in order to preserve your branding, while ridding you of the complexity of dealing with human interactions.
 
 
-### Opponent companies
+### [Opponent companies](/opponent/README.md)
 
 If you are a company and would like to ease your users griefs and help them resolve their issues with you, Justice.cool allows you to connect your IT systems in order to be notified if someone has a litigation with your company.
 

@@ -115,8 +115,8 @@ The facts are listed in the tab "Query variables."
 mutation CreateDispute($facts: [FactDataInput!]) {
   createDispute(
     data: {
-      # tells justice.cool to create a form if some info is missing
-      features: [onboarding]
+      # tells justice.cool which options to use
+      features: [letMeCheckBeforeSending]
       # how claims will be created/deleted
       updateMode: auto
       # how contracts will be signed
@@ -148,15 +148,13 @@ mutation CreateDispute($facts: [FactDataInput!]) {
     details {
       link
     }
-    # == if some info is missing, this form must be filled
-    form
   }
 }
 
 ==> wrapper Typescript
 await api.createDispute({
-      // tells justice.cool to create a form if some info is missing
-      features: [JCoolFeature.Onboarding]
+      // tells justice.cool which options to use
+      features: [JCoolFeature.LetMeCheckBeforeSending]
       // how claims will be created/deleted
       updateMode: UpdateMode.Auto
       // how contracts will be signed
@@ -210,7 +208,7 @@ If you execute this:
 
 The id returned in the response is in the form "CFR-YYYYMMDD-xxxx" where YYYYMMDD is the actual date and xxxx is a 4-character string.
 
-**Note when** `updateMode: auto`
+<!-- **Note when** `updateMode: auto`
 
 If some information is missing, the dispute **will** be created (thus, you will have an ID), in a dormant state. But you will also be given the *form* property, which contains a link to a form that must be filled to complete the dispute.
 
@@ -219,7 +217,7 @@ If some information is missing, the dispute **will** be created (thus, you will 
 ```json
 [...]
 "form": "https://app.staging.justice.cool/form/01DFKD490BADBC4FS95SH5RA16"
-```
+``` -->
 
 
 ?> Please head to [the playground](/playground.md) to inspect detailed schema information and documentation.
@@ -266,7 +264,7 @@ In each case, setting a parameter to "manual" means that **justice.cool will not
 
 ?> If you use `updateMode: manual`, then you **must** specify claims manually.
 
-?> If you dot not provide any specific claim, then justice.cool will automatically compute them based on the "variables" you provided (`updateMode` mode is not "manual").
+?> When `updateMode` mode is not "manual", if you dot not provide any specific claim, then justice.cool will automatically compute them based on the "variables" you provided.
 
 This mechanism gives you a wide range of options to handle your claims, from completely automatic to completely manual. We will review below a couple of common use cases.
 
@@ -297,7 +295,7 @@ mutation CreateDispute($opponent: OpponentInput!) {
   createDispute(
     data: {
       # see above for those
-      features: [onboarding]
+      features: [letMeCheckBeforeSending]
       signatureMode: auto
       variables: []
       opponent: $opponent
@@ -359,6 +357,8 @@ You can search for these companies in the [Companies](/dev-tools/companies) sect
 
 If you want to provide the contact means for the opponent, you can specify them in the `contactMeans` variable.
 In addition, you can also force the contact means to `auto: true` to use the contact means defined in justice.cool database.
+
+!>If the SIRET given is not from a company we have specific information about in our database, and that no contact means is provided in the query, we will use the contact means defined in the Sirene.fr database to contact the opponent.
 
 ### If the opponent is an individual
 
