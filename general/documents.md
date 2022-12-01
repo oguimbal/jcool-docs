@@ -35,9 +35,9 @@ It will require:
 
 # Option 2: Pre-upload one document in a single variable
 
-You can pre-upload each document via an http `POST` to `https://api.justice.cool/v1/upload`  (or `https://api.staging.justice.cool/v1/upload` for the dev environment).
+You can pre-upload each document via an http `POST` query to `https://api.justice.cool/v1/upload`  (or `https://api.staging.justice.cool/v1/upload` for the dev environment).
 
-This POST expects:
+This POST query expects:
 - A binary body which is the content of your document
 - The document mime type in the `Content-Type` header
 
@@ -54,7 +54,7 @@ Justice.cool knows how to convert and concatenate documents, you just need to up
 
 1) You begin a multi-document upload by sending your first file via an http `POST` to `https://api.justice.cool/v1/upload/concat`, which works in the same way as `Option 2`.
 
-2) The first call will give you a reference (example: `upload:xxxxxx`) that can later be used to add additional files via a similar http post to `https://api.justice.cool/v1/upload/concat?id=upload:xxxxxx`
+2) The first call will give you a reference (example: `upload:xxxxxx`) that can later be used to add additional files via a similar http post query to `https://api.justice.cool/v1/upload/concat?id=upload:xxxxxx`
 
 3) You finalize your upload when sending the last file by specifying `finish=true` argument (ex: `https://api.justice.cool/v1/upload/concat?id=upload:xxxxxx&finish=true`)
 
@@ -64,6 +64,6 @@ Each POST expects:
 - A binary body which is the content of your document
 - The document mime type in the `Content-Type` header
 
-?> The "intermediary" upload refrence should like `upload:XXXXXX`, while the "final" uploaded document reference should look like `temp:XXXXX`
+?> The "intermediary" upload refrence should look like `upload:XXXXXX`, while the "final" uploaded document reference should look like `temp:XXXXX`
 
 !> An uploaded document reference can be used multiple times in a **single** call to `createDispute`, but it cannot be reused later.
