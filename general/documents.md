@@ -33,7 +33,7 @@ It will require:
 
 ?> If you wish to use authenticated (not public) urls, most storage providers (aws s3, azure blob storage, swift, ...) provide mechanisms to create `pre-signed urls` which create temporarily public urls. If you use a custom storage, you could sign your urls using a jwt, for instance.
 
-# Option 2: Pre-upload each documents in a single file
+# Option 2: Pre-upload one document in a single variable
 
 You can pre-upload each document via an http `POST` to `https://api.justice.cool/v1/upload`  (or `https://api.staging.justice.cool/v1/upload` for the dev environment).
 
@@ -47,10 +47,10 @@ It will return a raw body (string) containing a reference that you can pass as a
 
 !> An uploaded document reference can be used multiple times in a **single** call to `createDispute`, but it cannot be reused later.
 
-# Option 3: Pre-upload each documents in multiple files
+# Option 3: Pre-upload multiple documents in a single variable
 
-There are cases where you could have two documents (a `.jpg` and a `.pdf` file for instance), which corresponds to a single document you want to upload.
-It turns out that Justice.cool knows how to convert and concatenate documents, just upload your two (or more) files via multiple http `POST`:
+There are cases where you could have two documents (a `.jpg` and a `.pdf` file for instance), which correspond to a single document you want to upload.
+Justice.cool knows how to convert and concatenate documents, you just need to upload your two (or more) files via multiple http `POST` queries:
 
 1) You begin a multi-document upload by sending your first file via an http `POST` to `https://api.justice.cool/v1/upload/concat`, which works in the same way as `Option 2`.
 
